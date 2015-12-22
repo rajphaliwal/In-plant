@@ -94,6 +94,45 @@ public class Path_handler extends sample_helper{
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public String update_in_table(int path_id,int plant_id, String TName, String path)
+    {
+        Session session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+       
+        boolean error_flag=false;
+        
+        Transaction tx = null;
+        try
+        {   
+            TblPaths t = (TblPaths) session.get(TblPaths.class,new BigDecimal(path_id));
+            Plant_handler ph=new Plant_handler();
+            TblPlant plant= ph.get_tuple(plant_id);
+            
+            tx=session.beginTransaction();
+            
+            if(plant==null)  throw  new Exception();
+           
+            t.setTblPlant(plant);
+            t.setTName(TName);
+            t.setTArrPath(path);
+            
+            tx.commit();
+        }
+        catch(Exception e)
+        {
+            error_flag=true; 
+            if (tx != null) {
+                tx.rollback();
+            e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+            if(error_flag==false) return "Success";
+           else         return "Failure";
+        }   
+    }
+    
     TblPaths get_tuple(int path_id) {
         Session session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

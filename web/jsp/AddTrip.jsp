@@ -16,7 +16,6 @@
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
 <%@page import="hibernate.helper.CardList"%>
 <%@page import="java.util.List"%>
-<%@page import="EditTransporter.TransporterList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -296,7 +295,7 @@
                         <select class="form-control" id="Transporter" onchange="xyz()">
                         <%
                             out.println("<option>Choose Transporter</option>");
-                            TransporterList t=new TransporterList();
+                            hibernate.helper.TransporterList t = new hibernate.helper.TransporterList();
                             List<hibernate.pojo.TblTransporter> transporterList=t.getTransporterList(user.getTblPlant().getIPlantId().toString());
                             for(int i = 0; i < transporterList.size(); i++)
                                 out.println("<option value=\""+transporterList.get(i).getITransporterId()+"\">"+ transporterList.get(i).getTTransporterName() +"</option>");

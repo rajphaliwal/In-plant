@@ -3,26 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EditTransporter;
+package hibernate.helper;
 
-import hibernate.pojo.TblTransporter;
-import hibernate.pojo.TblUsers;
-import java.util.Collections;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
  *
- * @author Ankit
+ * @author Raj-HP
  */
 public class TransporterList {
     Session session = null;
-
-    public TransporterList() 
-    {
-        
-    }
     
     private List<hibernate.pojo.TblTransporter> transporterList = null;
     
@@ -30,6 +22,9 @@ public class TransporterList {
         this.session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
         try 
         {
+            /*Query q = session.createQuery ("FROM hibernate.pojo.TblCard where i_plant_id=" + Id +
+                                        "and c_card_id not in" + 
+                                        "(FROM hibernate.pojo.TblMapping where i_plant_id=" + Id + "and b_is_active='true')");*/
             Query q = session.createQuery ("FROM hibernate.pojo.TblTransporter where i_plant_id=" + Id);
             transporterList = (List<hibernate.pojo.TblTransporter>) q.list();
             
@@ -43,28 +38,5 @@ public class TransporterList {
             this.session.close();
         }
        return transporterList;
-    }
-    public List<hibernate.pojo.TblTransporter> getTransporterList(){
-        this.session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
-        try 
-        {
-            Query q = session.createQuery ("FROM hibernate.pojo.TblTransporter");
-            transporterList = (List<hibernate.pojo.TblTransporter>) q.list();
-            
-        }
-        catch (Exception e) 
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            this.session.close();
-        }
-       return transporterList;
-    }
-    public static void main(String args[])
-    {
-        
-        
     }
 }

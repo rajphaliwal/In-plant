@@ -1,24 +1,17 @@
 <%-- 
-    Document   : login
-    Created on : 29 Mar, 2015, 6:27:53 PM
-    Author     : rahul
+    Document   : ModifyPlant
+    Created on : Dec 21, 2015, 3:18:09 PM
+    Author     : Raj-HP
 --%>
 
-<%@page import="com.opensymphony.xwork2.ActionContext"%>
-<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>JSP Page</title>
     </head>
     <body>
-         <%
-       Map sesion = (Map)ActionContext.getContext().getSession();
-       hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");
-       out.print("***"+user.getSUsername()+"***"+" in "+request.getRequestURI());
-       %>
+        <h1>Hello World!</h1>
     </body>
-    
 </html>

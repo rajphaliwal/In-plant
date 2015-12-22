@@ -68,9 +68,9 @@ public class Generate
         Permissions plantModify=new Permissions(temporary_canView, "Modify Plant", "loggedIn-ModifyPlant");
         plantSetup.insertChild(plantModify);
         
-        temporary_canView=user.getBSetupNewPlant();
+        /*temporary_canView=user.getBSetupNewPlant();
         Permissions plantCreate=new Permissions(temporary_canView, "Create new Plant", "loggedIn-SetupPlant");
-        plantSetup.insertChild(plantCreate);
+        plantSetup.insertChild(plantCreate);*/
         
         //UserManagerment
         Permissions userManagement=new Permissions(false, "User Management", "#");
@@ -81,7 +81,7 @@ public class Generate
         userManagement.insertChild(addUser);
         
         temporary_canView=user.getBModifyUser();
-        Permissions modifyUser=new Permissions(temporary_canView, "Modify User", "loggedIn-ModifyUser");
+        Permissions modifyUser=new Permissions(temporary_canView, "View User", "loggedIn-ViewUser");
         userManagement.insertChild(modifyUser);
         
         //Vehicle Management
@@ -93,7 +93,7 @@ public class Generate
         vehicleManagement.insertChild(addVehicle);
         
         temporary_canView=user.getBModifyVehicle();
-        Permissions modifyVehicle=new Permissions(temporary_canView, "Modify Vehicle", "loggedIn-ModifyVehicle");
+        Permissions modifyVehicle=new Permissions(temporary_canView, "View Vehicle", "loggedIn-ViewVehicle");
         vehicleManagement.insertChild(modifyVehicle);
         
         //Driver Management
@@ -105,7 +105,7 @@ public class Generate
         driverManagement.insertChild(addDriver);
         
         temporary_canView=user.getBModifyVehicle();
-        Permissions modifyDriver=new Permissions(temporary_canView, "Modify Driver", "loggedIn-ModfiyDriver");
+        Permissions modifyDriver=new Permissions(temporary_canView, "View Driver", "loggedIn-ViewDriver");
         driverManagement.insertChild(modifyDriver);
         
         //Transporter Management
@@ -117,7 +117,7 @@ public class Generate
         transporterManagement.insertChild(addTransporter);
         
         temporary_canView=user.getBModifyTransporter();
-        Permissions modifyTransporter=new Permissions(temporary_canView, "Modify Transporter", "loggedIn-ModifyTransporter");
+        Permissions modifyTransporter=new Permissions(temporary_canView, "View Transporter", "loggedIn-ViewTransporter");
         transporterManagement.insertChild(modifyTransporter);
         
         //Epos Management
@@ -129,7 +129,7 @@ public class Generate
         eposManagement.insertChild(addEpos);
         
         temporary_canView=user.getBModifyEpos();
-        Permissions modifyEpos=new Permissions(temporary_canView, "Modify Epos", "loggedIn-ModifyEpos");
+        Permissions modifyEpos=new Permissions(temporary_canView, "View Epos", "loggedIn-ViewEpos");
         eposManagement.insertChild(modifyEpos);
         
         //Link Management
@@ -141,7 +141,7 @@ public class Generate
         linkManagement.insertChild(addLink);
         
         temporary_canView=user.getBModifyEpos();
-        Permissions modifyLink=new Permissions(temporary_canView, "Modify Link", "loggedIn-ModifyLink");
+        Permissions modifyLink=new Permissions(temporary_canView, "View Link", "loggedIn-ViewLink");
         linkManagement.insertChild(modifyLink);
         
         //Path Management
@@ -153,7 +153,7 @@ public class Generate
         pathManagement.insertChild(addPath);
         
         temporary_canView=user.getBModifyPath();
-        Permissions modifyPath=new Permissions(temporary_canView, "Modify Path", "loggedIn-ModifyPath");
+        Permissions modifyPath=new Permissions(temporary_canView, "View Path", "loggedIn-ViewPath");
         pathManagement.insertChild(modifyPath);
         
         //Process Management
@@ -165,7 +165,7 @@ public class Generate
         processManagement.insertChild(addProcess);
         
         temporary_canView=user.getBModifyProcess();
-        Permissions modifyProcess=new Permissions(temporary_canView, "Modify Process", "loggedIn-ModifyProcess");
+        Permissions modifyProcess=new Permissions(temporary_canView, "View Process", "loggedIn-ViewProcess");
         processManagement.insertChild(modifyProcess);
         
         //Card Management
@@ -177,7 +177,7 @@ public class Generate
         cardManagement.insertChild(addCard);
         
         temporary_canView=user.getBModifyProcess();
-        Permissions modifyCard=new Permissions(temporary_canView, "Modify Card", "loggedIn-ModifyCard");
+        Permissions modifyCard=new Permissions(temporary_canView, "View Card", "loggedIn-ViewCard");
         cardManagement.insertChild(modifyCard);
         
         //Change Plant

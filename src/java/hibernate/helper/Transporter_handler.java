@@ -143,7 +143,9 @@ public class Transporter_handler extends sample_helper
         }
 
     }
-
+    
+    
+    
     public List<hibernate.pojo.TblTransporter> get_transporter_List()
     {
         session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
@@ -221,7 +223,11 @@ public class Transporter_handler extends sample_helper
         }
 
     }
-
+    public static void main(String[] args)
+    {
+        Transporter_handler t = new Transporter_handler();
+        t.update_in_table(149,23,"trans_567","89","kolkata","kolkata","WB","700006","mail@gmail.com");
+    }
     public String update_in_table(int tr_id, int plant_id, String tr_name, String tr_mob_no, String tr_address, String tr_city, String tr_state, String tr_pin, String tr_email_id)
     {
         session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
@@ -387,5 +393,5 @@ public class Transporter_handler extends sample_helper
         }
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

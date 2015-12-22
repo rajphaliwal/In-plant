@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -77,5 +78,45 @@ public class Link_handler {
            if(error_flag==false) return "Success";
            else         return "Failure";
         }
+    }
+    
+    public String update_in_table(int link_id,int plant_id,int to,int from,int time)
+    {
+        Session session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+       
+        boolean error_flag=false;
+        
+        Transaction tx = null;
+        try
+        {   
+            TblLinks t = (TblLinks) session.get(TblLinks.class,new BigDecimal(link_id));
+            Plant_handler ph=new Plant_handler();
+            TblPlant plant= ph.get_tuple(plant_id);
+            
+            tx=session.beginTransaction();
+            
+            if(plant==null)  throw  new Exception();
+           
+            t.setTblPlant(plant);
+            t.setTblEposByITo(null);
+            t.setTblEposByIFrom(null);
+            t.setNTimediffInMin(new BigDecimal(time));
+            
+            tx.commit();
+        }
+        catch(Exception e)
+        {
+            error_flag=true; 
+            if (tx != null) {
+                tx.rollback();
+            e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+            if(error_flag==false) return "Success";
+           else         return "Failure";
+        }   
     }
 }

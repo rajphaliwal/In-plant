@@ -23,7 +23,7 @@
             {
                 if(button.id == "home")
                     document.transporter.action = "Home";
-                else if (button.id === "add")
+                else if (button.id === "next")
                     document.transporter.action = "AddTransporter";
                 document.transporter.submit();
             }

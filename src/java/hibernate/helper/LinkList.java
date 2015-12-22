@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hibernate.helper;
 
 import java.util.List;
@@ -9,23 +13,19 @@ import org.hibernate.Session;
  *
  * @author Raj-HP
  */
-public class CardList {
+public class LinkList {
     Session session = null;
-
-    public CardList() {
-    }
+    private List<hibernate.pojo.TblLinks> linkList = null;
     
-    private List<hibernate.pojo.TblCard> cardList = null;
-    
-    public List<hibernate.pojo.TblCard> getCardList(String Id){
+    public List<hibernate.pojo.TblLinks> getLinkList(String Id){
         this.session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
         try 
         {
             /*Query q = session.createQuery ("FROM hibernate.pojo.TblCard where i_plant_id=" + Id +
                                         "and c_card_id not in" + 
                                         "(FROM hibernate.pojo.TblMapping where i_plant_id=" + Id + "and b_is_active='true')");*/
-            Query q = session.createQuery ("FROM hibernate.pojo.TblCard where i_plant_id=" + Id);
-            cardList = (List<hibernate.pojo.TblCard>) q.list();
+            Query q = session.createQuery ("FROM hibernate.pojo.TblLinks where i_plant_id=" + Id);
+            linkList = (List<hibernate.pojo.TblLinks>) q.list();
             
         }
         catch (Exception e) 
@@ -36,10 +36,6 @@ public class CardList {
         {
             this.session.close();
         }
-       return cardList;
-    }
-    public static void main(String args[])
-    {
-        
+       return linkList;
     }
 }

@@ -94,5 +94,47 @@ public class Process_handler {
              return c;
         }     
     }
-    
+    public static void main(String[] args)
+    {
+        Process_handler t = new Process_handler();
+        //t.insert_into_table(23,"raj");
+        t.update_in_table(151,23,"ankit");
+    }
+    public String update_in_table(int process_id,int plant_id, String processname)
+    {
+        session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+       
+        boolean error_flag=false;
+        
+        Transaction tx = null;
+        try
+        {   
+            TblProcess t = (TblProcess) session.get(TblProcess.class,new BigDecimal(process_id));
+            Plant_handler ph=new Plant_handler();
+            TblPlant plant= ph.get_tuple(plant_id);
+            
+            tx=session.beginTransaction();
+            
+            if(plant==null)  throw  new Exception();
+           
+            t.setTblPlant(plant);
+            t.setTProcessType(processname);
+            
+            tx.commit();
+        }
+        catch(Exception e)
+        {
+            error_flag=true; 
+            if (tx != null) {
+                tx.rollback();
+            e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+            if(error_flag==false) return "Success";
+           else         return "Failure";
+        }   
+    }
 }

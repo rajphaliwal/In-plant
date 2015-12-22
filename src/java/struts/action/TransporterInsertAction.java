@@ -37,7 +37,7 @@ public class TransporterInsertAction {
         
         InsertPlant i = new InsertPlant();
         TblPlant plant = i.get_tuple(num);*/
-        
+        System.out.println(Id + "   " + TTransporterName);
         Transporter_handler t = new Transporter_handler();
         String result1 = t.insert_into_table(Integer.parseInt(Id), TTransporterName, TTransporterMobileNo, TTransporterAddr, TTransporterCity, TTransporterState, ITransporterPin, TTransporterEmailId);
         
@@ -47,7 +47,20 @@ public class TransporterInsertAction {
         
         return result1;
     }
-
+    public static void main(String[] args) throws Exception
+    {
+        TransporterInsertAction t= new TransporterInsertAction();
+        t.TTransporterName = "hulalah";
+        t.TTransporterAddr = "Kolkata";
+        t.TTransporterCity = "Kolkata";
+        t.TTransporterEmailId = "hulalah@gmail.com";
+        t.TTransporterMobileNo = "8989898989";
+        t.TTransporterState = "WB";
+        t.Id = "23";
+        t.SUsername = "hulalah";
+        t.SPassword = "hulalah";
+        t.execute();
+    }
     public String getSUsername() {
         return SUsername;
     }
