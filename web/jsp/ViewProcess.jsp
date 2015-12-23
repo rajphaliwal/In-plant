@@ -14,10 +14,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>All Process</title>
-        <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <link rel="stylesheet" href="css/table.css">
+        <title>All Process</title>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -53,7 +53,7 @@
                     getProcessString+=("<td>" + i.getTProcessType() + "</td>");
                     if(user.getBPlantModify())
                     {
-                        getProcessString+=("<td><button id=\"" + i.getIProcessId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
+                        getProcessString+=("<td><button id=\"" + i.getIProcessId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"popup(this)\"> Modify </button> </td>");
                     }
                     getProcessString+="</tr>";
                     rowId++;
@@ -61,11 +61,48 @@
                 out.println(getProcessString);
                 
         %>
+        <script>
+            var processid;
+            function popup(button)
+            {
+                processid=button.id;
+                pop('popDiv');
+            }
+            function xyz()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {
+                    // code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function()
+                {
+                    if(xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        location.reload();
+                    }
+                };
+                var a = document.getElementById("processname").value;
+                var b = processid;
+                xmlhttp.open("GET", "jsp/UpdateProcess.jsp?process_id=" + b + "&process_name=" + a, true);
+                xmlhttp.send();
+            }
+        </script>
         <div id="popDiv" class="ontop">
             <form id="popup">
                 <label for="Path" id="heading">Modify</label><br>
                 <div id="list">
-
+                    <input  type="hidden" name="Id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
+                    <label>Process Name : </label>
+                    <input type="text" name="processname" id="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
+                    <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
+                    <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
                 </div>
             </form>
         </div>

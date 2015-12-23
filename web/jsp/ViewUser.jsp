@@ -12,13 +12,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <title>Login</title>
         <link rel="stylesheet" href="css/table.css">
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
     </head>
-    <body >
+    <body>
         <div><jsp:include page="Menu.jsp"/></div>
          <%
                 ValueStack stack = ActionContext.getContext().getValueStack();
@@ -62,9 +62,9 @@
         %>
         <div id="popDiv" class="ontop">
             <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
                 <div id="list">
-                    <input type="text" >
-                    <p>hello</p>
+
                 </div>
             </form>
         </div>

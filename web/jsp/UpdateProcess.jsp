@@ -20,9 +20,9 @@
     hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");*/
     
     String process_id = request.getParameter("process_id");
-    String processname = request.getParameter("processname");
+    String process_name = request.getParameter("process_name");
     
     
     hibernate.helper.Process_handler pl = new hibernate.helper.Process_handler();
-    pl.update_in_table(Integer.parseInt(process_id),23, processname);
+    pl.update_in_table(Integer.parseInt(process_id),23, process_name);
 %>
