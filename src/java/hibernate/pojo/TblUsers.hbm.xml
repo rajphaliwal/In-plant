@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 Jun, 2015 9:41:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.pojo.TblUsers" table="tbl_users" schema="pr_inplant" optimistic-lock="version">
+        <id name="SUsername" type="string">
+            <column name="s_username" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblPlant" class="hibernate.pojo.TblPlant" fetch="select">
+            <column name="i_plant_id" precision="32" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="SPassword" type="string">
+            <column name="s_password" />
+        </property>
+        <property name="SPasswordMd5" type="string">
+            <column name="s_password_md5" not-null="true" />
+        </property>
+        <property name="BRemoveTrip" type="java.lang.Boolean">
+            <column name="b_remove_trip" />
+        </property>
+        <property name="BViewTrip" type="java.lang.Boolean">
+            <column name="b_view_trip" />
+        </property>
+        <property name="BNodeView" type="java.lang.Boolean">
+            <column name="b_node_view" />
+        </property>
+        <property name="BAddTrip" type="java.lang.Boolean">
+            <column name="b_add_trip" />
+        </property>
+        <property name="BViewException" type="java.lang.Boolean">
+            <column name="b_view_exception" />
+        </property>
+        <property name="BEndException" type="java.lang.Boolean">
+            <column name="b_end_exception" />
+        </property>
+        <property name="BViewHistory" type="java.lang.Boolean">
+            <column name="b_view_history" />
+        </property>
+        <property name="BSetupNewPlant" type="java.lang.Boolean">
+            <column name="b_setup_new_plant" />
+        </property>
+        <property name="BPlantModify" type="java.lang.Boolean">
+            <column name="b_plant_modify" />
+        </property>
+        <property name="BAddUser" type="java.lang.Boolean">
+            <column name="b_add_user" />
+        </property>
+        <property name="BModifyUser" type="java.lang.Boolean">
+            <column name="b_modify_user" />
+        </property>
+        <property name="BChangeCurrentPlant" type="java.lang.Boolean">
+            <column name="b_change_current_plant" />
+        </property>
+        <property name="BAddVehicle" type="java.lang.Boolean">
+            <column name="b_add_vehicle" />
+        </property>
+        <property name="BModifyVehicle" type="java.lang.Boolean">
+            <column name="b_modify_vehicle" />
+        </property>
+        <property name="BModifyDriver" type="java.lang.Boolean">
+            <column name="b_modify_driver" />
+        </property>
+        <property name="BAddDriver" type="java.lang.Boolean">
+            <column name="b_add_driver" />
+        </property>
+        <property name="BViewDo" type="java.lang.Boolean">
+            <column name="b_view_do" />
+        </property>
+        <property name="BLoggedIn" type="java.lang.Boolean">
+            <column name="b_logged_in" />
+        </property>
+        <property name="ITransporterId" type="big_decimal">
+            <column name="i_transporter_id" precision="30" scale="0" />
+        </property>
+        <property name="IDriverId" type="big_decimal">
+            <column name="i_driver_id" precision="30" scale="0" />
+        </property>
+        <property name="BModifyTransporter" type="java.lang.Boolean">
+            <column name="b_modify_transporter" />
+        </property>
+        <property name="BAddTransporter" type="java.lang.Boolean">
+            <column name="b_add_transporter" />
+        </property>
+        <property name="BAddCard" type="java.lang.Boolean">
+            <column name="b_add_card" />
+        </property>
+        <property name="BModifyLink" type="java.lang.Boolean">
+            <column name="b_modify_link" />
+        </property>
+        <property name="BAddLink" type="java.lang.Boolean">
+            <column name="b_add_link" />
+        </property>
+        <property name="BModifyProcess" type="java.lang.Boolean">
+            <column name="b_modify_process" />
+        </property>
+        <property name="BAddProcess" type="java.lang.Boolean">
+            <column name="b_add_process" />
+        </property>
+        <property name="BModifyEpos" type="java.lang.Boolean">
+            <column name="b_modify_epos" />
+        </property>
+        <property name="BAddEpos" type="java.lang.Boolean">
+            <column name="b_add_epos" />
+        </property>
+        <property name="BModifyPath" type="java.lang.Boolean">
+            <column name="b_modify_path" />
+        </property>
+        <property name="BAddPath" type="java.lang.Boolean">
+            <column name="b_add_path" />
+        </property>
+        <property name="BModifyCard" type="java.lang.Boolean">
+            <column name="b_modify_card" />
+        </property>
+    </class>
+</hibernate-mapping>

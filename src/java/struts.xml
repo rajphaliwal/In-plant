@@ -1,0 +1,137 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <constant name="struts.devMode" value="true" />
+    <package name="default" extends="struts-default">
+        
+        <action name="userLogin" class="struts.action.UserLoginAction" method="execute">
+            <result name="success">/jsp/ViewTrips.jsp</result>
+            <result name="invalid">/jsp/LoginError.jsp</result>
+        </action>
+        
+        <action name="loggedIn-*" >
+            <result name="success">/jsp/{1}.jsp</result>
+        </action>
+        
+        <action name="Logout" >
+            <result>/jsp/Logout.jsp</result>
+        </action>
+        <action name="NodeView*" >
+            <result>/jsp/Node.jsp{1}</result>
+        </action>
+        <action name="TripDetails*" >
+            <result>/jsp/TripDetails.jsp{1}</result>
+        </action>
+        <action name="insertplant" class="struts.action.PlantInsertAction" method="execute">
+            <result name="Success">/jsp/insert/epos.jsp</result>
+        </action>
+        <action name="insertepos" class="struts.action.EposInsertAction" method="execute">
+            <result name="Success">/jsp/insert/epos.jsp</result>
+        </action>
+        <action name="inserteposnext" class="struts.action.EposInsertAction" method="execute">
+            <result name="Success">/jsp/insert/link.jsp</result>
+        </action>
+        <action name="insertlink" class="struts.action.LinkInsertAction" method="execute">
+            <result name="Success">/jsp/insert/link.jsp</result>
+        </action>
+        <action name="insertlinknext" class="struts.action.LinkInsertAction" method="execute">
+            <result name="Success">/jsp/insert/transporter.jsp</result>
+        </action>
+        <action name="inserttransporter" class="struts.action.TransporterInsertAction" method="execute">
+            <result name="Success">/jsp/insert/transporter.jsp</result>
+        </action>
+        <action name="inserttransporternext" class="struts.action.TransporterInsertAction" method="execute">
+            <result name="Success">/jsp/insert/vehicle.jsp</result>
+        </action>
+        <action name="insertvehicle" class="struts.action.VehicleInsertAction" method="execute">
+            <result name="Success">/jsp/insert/vehicle.jsp</result>
+        </action>
+        <action name="insertvehiclenext" class="struts.action.VehicleInsertAction" method="execute">
+            <result name="Success">/jsp/insert/driver.jsp</result>
+        </action>
+        <action name="insertdriver" class="struts.action.DriverInsertAction" method="execute">
+            <result name="Success">/jsp/insert/driver.jsp</result>
+        </action>
+        <action name="insertdrivernext" class="struts.action.DriverInsertAction" method="execute">
+            <result name="Success">/jsp/insert/card.jsp</result>
+        </action>
+        <action name="insertcard" class="struts.action.CardInsertAction" method="execute">
+            <result name="Success">/jsp/insert/card.jsp</result>
+        </action>
+        <action name="insertcardnext" class="struts.action.CardInsertAction" method="execute">
+            <result name="Success">/jsp/insert/process.jsp</result>
+        </action>
+        <action name="insertprocess" class="struts.action.ProcessInsertAction" method="execute">
+            <result name="Success">/jsp/insert/process.jsp</result>
+        </action>
+        <action name="insertprocessnext" class="struts.action.ProcessInsertAction" method="execute">
+            <result name="Success">/jsp/insert/path.jsp</result>
+        </action>
+        <action name="insertpath" class="struts.action.PathInsertAction" method="execute">
+            <result name="Success">/jsp/insert/path.jsp</result>
+        </action>
+        <action name="insertpathnext" class="struts.action.PathInsertAction" method="execute">
+            <result name="Success">/jsp/Login.jsp</result>
+        </action>
+        <action name="starttrip" class="struts.action.MappingInsertAction" method="execute">
+            <result name="Success">/jsp/Mapping.jsp</result>
+        </action>
+       <action name="insertuser" class="struts.action.UserInsertAction" method="execute">
+            <result name="Success">/jsp/AddUser.jsp</result>
+        </action>
+        <action name="AddDriver" class="struts.action.DriverInsertAction" method="execute">
+            <result name="Success">/jsp/AddDriver.jsp</result>
+        </action>
+        <action name="AddVehicle" class="struts.action.VehicleInsertAction" method="execute">
+            <result name="Success">/jsp/AddVehicle.jsp</result>
+        </action>
+        <action name="AddTransporter" class="struts.action.TransporterInsertAction" method="execute">
+            <result name="Success">/jsp/AddTransporter.jsp</result>
+        </action>
+        <action name="AddEpos" class="struts.action.EposInsertAction" method="execute">
+            <result name="Success">/jsp/AddEpos.jsp</result>
+        </action>
+        <action name="AddCard" class="struts.action.CardInsertAction" method="execute">
+            <result name="Success">/jsp/AddCard.jsp</result>
+        </action>
+        <action name="AddLink" class="struts.action.LinkInsertAction" method="execute">
+            <result name="Success">/jsp/AddLink.jsp</result>
+        </action>
+        <action name="AddPath" class="struts.action.PathInsertAction" method="execute">
+            <result name="Success">/jsp/AddPath.jsp</result>
+        </action>
+        <action name="AddProcess" class="struts.action.ProcessInsertAction" method="execute">
+            <result name="Success">/jsp/AddProcess.jsp</result>
+        </action>
+        <action name="Home">
+            <result>/jsp/ViewTrips.jsp</result>
+        </action>
+        <action name="skipepos">
+            <result>/jsp/insert/link.jsp</result>
+        </action>
+        <action name="skiplink">
+            <result>/jsp/insert/transporter.jsp</result>
+        </action>
+        <action name="skiptransporter">
+            <result>/jsp/insert/vehicle.jsp</result>
+        </action>
+        <action name="skipvehicle">
+            <result>/jsp/insert/driver.jsp</result>
+        </action>
+        <action name="skipdriver">
+            <result>/jsp/insert/card.jsp</result>
+        </action>
+        <action name="skipcard">
+            <result>/jsp/insert/process.jsp</result>
+        </action>
+        <action name="skipprocess">
+            <result>/jsp/insert/path.jsp</result>
+        </action>
+        <action name="skip">
+            <result>/jsp/insert/vehicle.jsp</result>
+        </action>
+    </package>
+</struts>
