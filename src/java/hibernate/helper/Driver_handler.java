@@ -221,7 +221,7 @@ public class Driver_handler extends sample_helper
 
     }
 
-    public String update_in_table(int tr_id, int plant_id, int dr_id, String dr_name, String dr_addr1, String dr_addr2, String dr_city, String dr_state, String dr_pin, String dr_country_id, String dr_email_id, String dr_lcnno)
+    public String update_in_table(int plant_id, int dr_id, String dr_name, String dr_addr1, String dr_addr2, String dr_city, String dr_state, String dr_pin, String dr_email_id, String dr_lcnno)
     {
         session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
 
@@ -235,8 +235,8 @@ public class Driver_handler extends sample_helper
 
             Plant_handler ph = new Plant_handler();
             TblPlant plant = ph.get_tuple(plant_id);
-            Transporter_handler tr = new Transporter_handler();
-            TblTransporter transporter = tr.get_tuple(tr_id);
+            /*Transporter_handler tr = new Transporter_handler();
+            TblTransporter transporter = tr.get_tuple(tr_id);*/
 
             tx = session.beginTransaction();
 

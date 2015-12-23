@@ -15,7 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -52,13 +53,21 @@
                     getUsersString+=("<td>" + i.getSUsername() + "</td>");
                     if(user.getBPlantModify())
                     {
-                        getUsersString+=("<td><button id=\"" + i.getSUsername() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyCard(this)\"> Modify </button> </td>");
+                        getUsersString+=("<td><button id=\"" + i.getSUsername() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                     }
                     getUsersString+="</tr>";
                     rowId++;
                 }
                 out.println(getUsersString);
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
     </body>
     
 </html>

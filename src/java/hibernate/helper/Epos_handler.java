@@ -231,7 +231,7 @@ public class Epos_handler extends sample_helper{
      * @param time_in_between
      * @return
      */
-    public String update_in_table(int machine_id,int plant_id,int terminal_id,int Gate_no,String Gateway_name, String location,boolean Bothways,int time_in_between) {
+    public String update_in_table(int machine_id,int plant_id,int terminal_id,int Gate_no,String Gateway_name, String location) {
      
        session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
        
@@ -256,8 +256,6 @@ public class Epos_handler extends sample_helper{
             ep.setIGateNo(new BigDecimal(Gate_no));                 
             ep.setTGatewayName(Gateway_name);
             ep.setTLocation(location);
-            ep.setBBothways(Bothways);
-            ep.setITimeInBetween(new BigDecimal(time_in_between)); 
             
             tx.commit();
         }

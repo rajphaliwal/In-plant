@@ -115,6 +115,10 @@ public class TblVehicle  implements java.io.Serializable {
     public void setTblMappings(Set<TblMapping> tblMappings) {
         this.tblMappings = tblMappings;
     }
+    public void setILoadCapacity(int v_load) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 

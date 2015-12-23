@@ -15,7 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Link</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -56,12 +57,20 @@
                     getLinkString+=("<td>" + i.getNTimediffInMin() + "</td>");
                     if(user.getBPlantModify())
                     {
-                        getLinkString+=("<td><button id=\"" + i.getILid() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyCard(this)\"> Modify </button> </td>");
+                        getLinkString+=("<td><button id=\"" + i.getILid() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                     }
                     getLinkString+="</tr>";
                     rowId++;
                 }
                 out.println(getLinkString);
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
     </body>
 </html>

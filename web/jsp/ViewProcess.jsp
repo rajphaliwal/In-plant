@@ -16,7 +16,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Process</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -52,7 +53,7 @@
                     getProcessString+=("<td>" + i.getTProcessType() + "</td>");
                     if(user.getBPlantModify())
                     {
-                        getProcessString+=("<td><button id=\"" + i.getIProcessId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyCard(this)\"> Modify </button> </td>");
+                        getProcessString+=("<td><button id=\"" + i.getIProcessId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                     }
                     getProcessString+="</tr>";
                     rowId++;
@@ -60,5 +61,13 @@
                 out.println(getProcessString);
                 
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
     </body>
 </html>

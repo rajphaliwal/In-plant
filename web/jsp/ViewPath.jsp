@@ -4,6 +4,7 @@
     Author     : Raj-HP
 --%>
 
+<%@page import="hibernate.helper.Epos_handler"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.opensymphony.xwork2.util.ValueStack"%>
@@ -15,7 +16,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Path</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -32,32 +34,64 @@
                 hibernate.helper.PathList pl = new hibernate.helper.PathList();
                 List<hibernate.pojo.TblPaths> pathList = pl.getPathList(user.getTblPlant().getIPlantId().toString());
                 
-                String getCardString = new String();
-                getCardString+="<table border=1 width=\"100%\" id=\"CradList\">";
-                getCardString+="<thead>";
-                getCardString+="<tr>";
-                getCardString+="<th>Card Number</th>";
+                String getPathString = new String();
+                getPathString+="<table border=1 width=\"100%\" id=\"PathList\">";
+                getPathString+="<thead>";
+                getPathString+="<tr>";
+                getPathString+="<th>Path Name</th>";
+                getPathString+="<th>Path Details</th>";
                 if(user.getBPlantModify())
                 {
-                    getCardString+="<th>Modify Transporter</th>";
+                    getPathString+="<th>Modify Path</th>";
                 
                 }
-                getCardString+="</tr>";
-                getCardString+="</thead>";
-                getCardString+="<tbody>";
+                getPathString+="</tr>";
+                getPathString+="</thead>";
+                getPathString+="<tbody>";
                 int rowId=0;
-                for(hibernate.pojo.TblCard i: cardList)
+                for(hibernate.pojo.TblPaths i: pathList)
                 {
-                    getCardString+="<tr>";
-                    getCardString+=("<td>" + i.getCCardId() + "</td>");
+                    getPathString+="<tr>";
+                    getPathString+=("<td>" + i.getTName() + "</td>");
+                    //getPathString+=("<td>" + i.getTArrPath() + "</td>");
+                    String str = i.getTArrPath();
+                    String temp[] = str.split(",");
+                    String res = new String();
+                    int id;
+                    for(int j = 0; j<temp.length; j++)
+                    {
+                        hibernate.helper.Epos_handler EposList = new Epos_handler();
+                        if(temp[j].charAt(0) == '-')
+                        {
+                            //temp[j] = temp[j].substring(1);
+                            id = (-1)*(Integer.parseInt(temp[j].substring(1)));
+                        }
+                        else
+                            id = Integer.parseInt(temp[j]);
+                        hibernate.pojo.TblEpos epos = EposList.get_tuple(id);
+                        res+=epos.getTGatewayName();
+                        if(j<(temp.length-1))
+                            res+="->";
+                    }
+                    getPathString+=("<td>" + res + "</td>");
+                    res="";
                     if(user.getBPlantModify())
                     {
-                        getCardString+=("<td><button id=\"" + i.getCCardId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyCard(this)\"> Modify </button> </td>");
+                        getPathString+=("<td><button id=\"" + i.getIPathId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                     }
-                    getCardString+="</tr>";
+                    getPathString+="</tr>";
                     rowId++;
                 }
-                out.println(getCardString);
+                out.println(getPathString);
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
+            
     </body>
 </html>

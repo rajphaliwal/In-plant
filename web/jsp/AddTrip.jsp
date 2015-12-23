@@ -25,53 +25,19 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/popup.js"></script>
         <title>Mapping</title>
     </head>
     <body id="page-top">
         <script>
-            function pop(div) 
-            {
-                document.getElementById(div).style.display = 'block';
-                document.getElementById('page-top').style.overflow="hidden";
-                //temp.style.opacity="0.6"
-            }
-            function hide(div) 
-            {
-                /*var x = document.getElementsByName("pathlist");
-                var a = document.getElementById("link");
-                for(var i = 0; i < x.length; i++)
-                    if(x[i].checked)
-                        a.innerHTML = x[i].value;*/
-                document.getElementById(div).style.display = 'none';
-                document.getElementById('page-top').style.overflow="scroll";
-                //temp.style.opacity="1"
-            }
             
             function radio(input)
             {
                 document.getElementById("pathid").value = input.id;
                 var a = document.getElementById("link");
                 a.innerHTML = input.value;
-                alert(document.getElementById("pathid").value);
+                //alert(document.getElementById("pathid").value);
             }
-            document.onkeydown = function(evt) 
-            {
-                evt = evt || window.event;
-                if (evt.keyCode === 27) {
-                        hide('popDiv');
-                }
-            };
-            window.addEventListener('mouseup', function(event)
-            {
-                var e = document.getElementById('popup');
-                
-                if(event.target !== e && event.target.parentNode !== e)
-                {
-                    document.getElementById('popDiv').style.display = 'none';
-                }
-                document.getElementById('page-top').style.overflow="scroll";
-            });
-            
             function xyz()
             {
                 var xmlhttp;
@@ -225,59 +191,59 @@
                         </div> 
 
 
-                            <div id="popDiv" class="ontop">
-                        <form id="popup">
-                            <label for="Path" id="heading">Select Path</label><br>
-                            <div id="list">
-                            <!--<input type="radio" name="pathlist" value="choose path" checked/>Choose Path-->
-                            <%
-                                //out.println("<option>Choose Transporter</option>");
-                                PathList path=new PathList();
-                                List<hibernate.pojo.TblPaths> pathList=path.getPathList(user.getTblPlant().getIPlantId().toString());
-                                for(int i = 0; i < pathList.size(); i++)
-                                {
-                                    String str = pathList.get(i).getTArrPath();
-                                    String temp[] = str.split(",");
-                                    String res = new String();
-                                    int id;
-                                    /*hibernate.helper.Epos_handler EposList = new Epos_handler();
-                                    if(temp[0].charAt(0) == '-')
+                        <div id="popDiv" class="ontop">
+                            <form id="popup">
+                                <label for="Path" id="heading">Select Path</label><br>
+                                <div id="list">
+                                <!--<input type="radio" name="pathlist" value="choose path" checked/>Choose Path-->
+                                <%
+                                    //out.println("<option>Choose Transporter</option>");
+                                    PathList path=new PathList();
+                                    List<hibernate.pojo.TblPaths> pathList=path.getPathList(user.getTblPlant().getIPlantId().toString());
+                                    for(int i = 0; i < pathList.size(); i++)
                                     {
-                                        temp[0] = temp[0].substring(1);
-                                        id = (-1)*(Integer.parseInt(temp[0]));
-                                    }
-                                    else
-                                        id = Integer.parseInt(temp[0]);
-                                    hibernate.pojo.TblEpos epos = new TblEpos();
-                                    epos = EposList.get_tuple(id);
-                                    System.out.println(epos.getTGatewayName());
-                                    res+=epos.getTGatewayName();
-                                    res+="->";*/
-                                    for(int j = 0; j<temp.length; j++)
-                                    {
-                                        hibernate.helper.Epos_handler EposList = new Epos_handler();
-                                        if(temp[j].charAt(0) == '-')
+                                        String str = pathList.get(i).getTArrPath();
+                                        String temp[] = str.split(",");
+                                        String res = new String();
+                                        int id;
+                                        /*hibernate.helper.Epos_handler EposList = new Epos_handler();
+                                        if(temp[0].charAt(0) == '-')
                                         {
-                                            //temp[j] = temp[j].substring(1);
-                                            id = (-1)*(Integer.parseInt(temp[j].substring(1)));
+                                            temp[0] = temp[0].substring(1);
+                                            id = (-1)*(Integer.parseInt(temp[0]));
                                         }
                                         else
-                                            id = Integer.parseInt(temp[j]);
-                                        hibernate.pojo.TblEpos epos = EposList.get_tuple(id);
+                                            id = Integer.parseInt(temp[0]);
+                                        hibernate.pojo.TblEpos epos = new TblEpos();
+                                        epos = EposList.get_tuple(id);
+                                        System.out.println(epos.getTGatewayName());
                                         res+=epos.getTGatewayName();
-                                        if(j<(temp.length-1))
-                                            res+="->";
+                                        res+="->";*/
+                                        for(int j = 0; j<temp.length; j++)
+                                        {
+                                            hibernate.helper.Epos_handler EposList = new Epos_handler();
+                                            if(temp[j].charAt(0) == '-')
+                                            {
+                                                //temp[j] = temp[j].substring(1);
+                                                id = (-1)*(Integer.parseInt(temp[j].substring(1)));
+                                            }
+                                            else
+                                                id = Integer.parseInt(temp[j]);
+                                            hibernate.pojo.TblEpos epos = EposList.get_tuple(id);
+                                            res+=epos.getTGatewayName();
+                                            if(j<(temp.length-1))
+                                                res+="->";
+                                        }
+                                        out.println("<label class=\"plist\"><input type=\"radio\" name=\"pathlist\" id=\""+pathList.get(i).getIPathId()+"\" value=\""+pathList.get(i).getTName()+ "\" onclick=\"radio(this)\"" +"/><span><span></span></span>"+ res +"</label>");
+                                        //res="";
+                                        System.out.println(res);
+                                        //out.println("<label class=\"plist\"><input type=\"radio\" name=\"pathlist\" id=\""+pathList.get(i).getIPathId()+"\" value=\""+pathList.get(i).getTName()+ "\" onclick=\"radio(this)\"" +"/><span><span></span></span>"+ pathList.get(i).getTArrPath() +"</label>");
                                     }
-                                    out.println("<label class=\"plist\"><input type=\"radio\" name=\"pathlist\" id=\""+pathList.get(i).getIPathId()+"\" value=\""+pathList.get(i).getTName()+ "\" onclick=\"radio(this)\"" +"/><span><span></span></span>"+ res +"</label>");
-                                    //res="";
-                                    System.out.println(res);
-                                    //out.println("<label class=\"plist\"><input type=\"radio\" name=\"pathlist\" id=\""+pathList.get(i).getIPathId()+"\" value=\""+pathList.get(i).getTName()+ "\" onclick=\"radio(this)\"" +"/><span><span></span></span>"+ pathList.get(i).getTArrPath() +"</label>");
-                                }
-                            %>
-                            <!--<input type="button" class="btn btn-info col-sm-12" name="ok" id="ok" value="Done" onClick = "hide('popDiv')" />--> 
-                            </div>
-                        </form>
-                    </div>
+                                %>
+                                <!--<input type="button" class="btn btn-info col-sm-12" name="ok" id="ok" value="Done" onClick = "hide('popDiv')" />--> 
+                                </div>
+                            </form>
+                        </div>
                     <div class="form-group">
                         <label for="Process">Process Type </label>
                         <select class="form-control" id="Process">

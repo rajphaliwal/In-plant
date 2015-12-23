@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="EditTransporter.editTransporter"%>
+<%--@page import="EditTransporter.editTransporter"--%>
 <%@page import="java.util.Map"%>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Transporter</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -65,13 +66,21 @@
                 getTransporterString+=("<td>" + i.getTTransporterEmailId() + "</td>");
                 if(user.getBPlantModify())
                 {
-                    getTransporterString+=("<td><button id=\"" + i.getITransporterId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyTransporter(this)\"> Modify </button> </td>");
+                    getTransporterString+=("<td><button id=\"" + i.getITransporterId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                 }
                 getTransporterString+="</tr>";
                 rowId++;
             }
             out.println(getTransporterString);
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
         <form action="">
             <input type="hidden" id="hide" name="id" value="">
             <input type="hidden" id="Id" name="Id" value="">

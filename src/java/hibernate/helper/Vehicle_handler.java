@@ -198,7 +198,7 @@ public class Vehicle_handler extends sample_helper{
      * @param v_lcnsedate
      * @return
      */
-    public String update_in_table (String v_id,int plant_id,String v_chasis, String v_type,long v_load,String v_owner,String v_permit,Date v_lcnsedate)
+    public String update_in_table (String v_id,int plant_id,String v_chasis, String v_type,long v_load,String v_owner,String v_permit)
     {
               session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
        
@@ -228,7 +228,7 @@ public class Vehicle_handler extends sample_helper{
              vhc.setILoadCapacity(v_load);
              vhc.setTOwner(v_owner);
              vhc.setTNationalPermit(v_permit);
-             vhc.setDtLicenseExpiryDate(v_lcnsedate);
+             //vhc.setDtLicenseExpiryDate(v_lcnsedate);
                          
             
             tx.commit();       

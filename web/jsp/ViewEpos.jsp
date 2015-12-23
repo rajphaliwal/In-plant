@@ -15,7 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Epos</title>
         <link rel="stylesheet" href="css/table.css">
-        <script src="js/deleteTransporter.js"></script>
+        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
+        <script src="js/popup.js"></script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -60,12 +61,20 @@
                     getEposString+=("<td>" + i.getTLocation() + "</td>");
                     if(user.getBPlantModify())
                     {
-                        getEposString+=("<td><button id=\"" + i.getIMachineId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"modifyCard(this)\"> Modify </button> </td>");
+                        getEposString+=("<td><button id=\"" + i.getIMachineId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");
                     }
                     getEposString+="</tr>";
                     rowId++;
                 }
                 out.println(getEposString);
         %>
+        <div id="popDiv" class="ontop">
+            <form id="popup">
+                <label for="Path" id="heading">Modify</label><br>
+                <div id="list">
+
+                </div>
+            </form>
+        </div>
     </body>
 </html>
