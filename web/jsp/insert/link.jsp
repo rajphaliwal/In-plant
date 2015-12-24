@@ -28,6 +28,7 @@
             }
             function linkaction(button)
             {
+                
                 var number = /^\d+$/;
                 var a = document.forms["link"]["timeinbetween"].value;
                 if (!number.test(a))
@@ -41,10 +42,20 @@
                 document.getElementById("to").value = dropdown2.value;
                 if (button.id === "add")
                 {
+                    if(document.getElementById("epos1").length < 2)
+                {
+                    alert("Atleast require two epos to add a link");
+                    return;
+                }
                     document.link.action = "insertlink";
                 }
                 else if (button.id === "next")
                 {
+                    if(document.getElementById("epos1").length < 2)
+                {
+                    alert("Atleast require two epos to add a link");
+                    return;
+                }
                     document.link.action = "insertlinknext";
                 }
                 document.link.submit();

@@ -31,7 +31,7 @@
                         document.vehicle.action = "Home";
                     else if(button.id == "next")
                     {
-                        if(document.getElementById("Transporter").length < 1)
+                        if(document.getElementById("Transporter").length < 2)
                         {
                             alert("Add Transporter to add Driver");
                             return;

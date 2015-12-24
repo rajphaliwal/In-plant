@@ -48,12 +48,22 @@
                     }
                     if (button.id === "add")
                     {
+                        if(document.getElementById("Transporter").length < 2)
+                        {
+                            alert("Add Transporter to add Vehicle");
+                            return;
+                        }
                         document.vehicle.action = "insertvehicle";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;
                     }
                     else if (button.id === "next")
                     {
+                        if(document.getElementById("Transporter").length < 2)
+                        {
+                            alert("Add Transporter to add Vehicle");
+                            return;
+                        }
                         document.vehicle.action = "insertvehiclenext";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;

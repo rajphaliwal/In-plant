@@ -72,7 +72,7 @@
                             alert("Load capacity : Expected Integer");
                             return;
                         }
-                        if(document.getElementById("Transporter").length < 1)
+                        if(document.getElementById("Transporter").length < 2)
                         {
                             alert("Add Transporter to add Vehicle");
                             return;

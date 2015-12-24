@@ -40,12 +40,22 @@
                 {
                     if (button.id === "add")
                     {
+                        if(document.getElementById("Transporter").length < 2)
+                        {
+                            alert("Add Transporter to add Driver");
+                            return;
+                        }
                         document.vehicle.action = "insertdriver";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;
                     }
                     else if (button.id === "next")
                     {
+                        if(document.getElementById("Transporter").length < 2)
+                        {
+                            alert("Add Transporter to add Driver");
+                            return;
+                        }
                         document.vehicle.action = "insertdrivernext";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;
