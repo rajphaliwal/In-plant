@@ -73,11 +73,70 @@
                 }
                 out.println(getDriverString);
         %>
+        <script>
+            var dr_id;
+            function popup(button)
+            {
+                dr_id = button.id;
+                pop('popDiv');
+            }
+            function xyz()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {
+                    // code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function()
+                {
+                    if(xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        location.reload();
+                    }
+                };
+                var a = document.getElementById("TDriverName").value;
+                var b = document.getElementById("TDriverAddr1").value;
+                var c = document.getElementById("TDriverAddr2").value;
+                var d = document.getElementById("TDriverCity").value;
+                var e = document.getElementById("TStateId").value;
+                var f = document.getElementById("IDriverPin").value;
+                var g = document.getElementById("TDriverEmailId").value;
+                var h = document.getElementById("TLicenceNo").value;
+                
+                xmlhttp.open("GET", "jsp/UpdateDriver.jsp?dr_id=" + dr_id + "&dr_name=" + a + "&dr_addr1=" + b + "&dr_addr2=" + c +
+                                    "&dr_city=" + d "&dr_state=" + e + "&dr_pin=" + f "&dr_email=" + g + "&dr_lnumber=" + h, true);
+                xmlhttp.send();
+            }
+        </script>
         <div id="popDiv" class="ontop">
             <form id="popup">
                 <label for="Path" id="heading">Modify</label><br>
                 <div id="list">
-
+                    <label>Driver Name:</label>
+                    <input class="form-control" type="text" name="TDriverName" id = "TDriverName" placeholder="Enter Driver Name" onfocus="hide(this)" onblur="show(this, 'Enter Driver Name')"/><br>
+                    <label>Driver Address 1: </label>
+                    <input class="form-control" type="text" name="TDriverAddr1" id ="TDriverAddr1"  placeholder="Enter Driver's 1st Address" onfocus="hide(this)" onblur="show(this, 'Enter Drivers 1st Address')" /><br>
+                    <label>Driver Address 2: </label>
+                    <input class="form-control" type="text" name="TDriverAddr2" id="TDriverAddr2" placeholder="Enter Driver's 2nd Address" onfocus="hide(this)" onblur="show(this, 'Enter Drivers 2nd Address')"/><br>
+                    <label>City: </label>
+                    <input class="form-control" type="text" name="TDriverCity" id ="TDriverCity" placeholder="Enter City" onfocus="hide(this)" onblur="show(this, 'Enter City')" /><br>
+                    <label>State Id:   </label>
+                    <input type="text" name="TStateId" id ="TStateId" class="form-control" placeholder="Enter State" onfocus="hide(this)" onblur="show(this, 'Enter State')" /><br>
+                    <label>Driver Pin: </label>  
+                    <input type="text" name="IDriverPin" id ="IDriverPin" class="form-control" placeholder="Enter Driver Pin" onfocus="hide(this)" onblur="show(this, 'Enter Driver Pin')" /><br>
+                    <label>Driver Email Id:   </label>
+                    <input type="text" name="TDriverEmailId" id ="TDriverEmailId" class="form-control" placeholder="Enter Email Id"  onfocus="hide(this)" onblur="show(this, 'Enter Email Id')"/><br>
+                    <label>License No:   </label>
+                    <input type="text" name="TLicenceNo" id ="TLicenceNo" class="form-control" placeholder="Enter Licence No" onfocus="hide(this)" onblur="show(this, 'Enter Licence No')" /><br>
+                    
+                    <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
+                    <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
                 </div>
             </form>
         </div>

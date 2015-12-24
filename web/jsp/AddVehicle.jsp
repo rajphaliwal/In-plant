@@ -1,12 +1,5 @@
-<%-- 
-    Document   : vehicle
-    Created on : Apr 18, 2015, 10:13:20 AM
-    Author     : Raj-HP
---%>
-
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
-<%@page import="EditTransporter.TransporterList"%>
 <%@page import="hibernate.helper.Transporter_handler"%>
 <%@page import="hibernate.pojo.TblPlant"%>
 <%@page import="com.opensymphony.xwork2.util.ValueStack"%>
@@ -79,6 +72,11 @@
                             alert("Load capacity : Expected Integer");
                             return;
                         }
+                        if(document.getElementById("Transporter").length < 1)
+                        {
+                            alert("Add Transporter to add Vehicle");
+                            return;
+                        }
                         document.vehicle.action = "AddVehicle";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;
@@ -116,7 +114,7 @@
                         <select class="form-control" id="Transporter" >
                             <%
                                 out.println("<option>Choose Transporter</option>");
-                                TransporterList t = new TransporterList();
+                                hibernate.helper.TransporterList t = new hibernate.helper.TransporterList();
                                 List<hibernate.pojo.TblTransporter> transporterList = t.getTransporterList(user.getTblPlant().getIPlantId().toString());
                                 for (int i = 0; i < transporterList.size(); i++) {
                                     out.println("<option value=\"" + transporterList.get(i).getITransporterId() + "\">" + transporterList.get(i).getTTransporterName() + "</option>");

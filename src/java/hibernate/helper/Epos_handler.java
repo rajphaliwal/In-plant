@@ -231,6 +231,11 @@ public class Epos_handler extends sample_helper{
      * @param time_in_between
      * @return
      */
+    public static void main(String[] args)
+    {
+        Epos_handler el = new Epos_handler();
+        el.update_in_table(778999, 23, 50, 50, "yahoo", "yahoo");
+    }
     public String update_in_table(int machine_id,int plant_id,int terminal_id,int Gate_no,String Gateway_name, String location) {
      
        session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();

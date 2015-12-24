@@ -28,6 +28,11 @@
             }
             function linkaction(button)
             {
+                if(document.getElementById("epos1").length < 2)
+                {
+                    alert("Atleast require two epos to add a link");
+                    return;
+                }
                 var number = /^\d+$/;
                 var a = document.forms["link"]["timeinbetween"].value;
                 if (!number.test(a))
@@ -69,7 +74,7 @@
                             <%
                                 out.println("<option>Choose Epos From</option>");
                                 EposList t = new EposList();
-                                List<hibernate.pojo.TblEpos> eposList = t.getEposList(user.getTblPlant().getIPlantId().toString());
+                                List<hibernate.pojo.TblEpos> eposList = t.getEposList(user.getTblPlant().getIPlantId().toString());    
                                 for (int i = 0; i < eposList.size(); i++) {
                                     out.println("<option value=\"" + eposList.get(i).getIMachineId() + "\">" + eposList.get(i).getTGatewayName() + "</option>");
                                 }

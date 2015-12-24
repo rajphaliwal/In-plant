@@ -1,11 +1,5 @@
-<%-- 
-    Document   : vehicle
-    Created on : Apr 18, 2015, 10:13:20 AM
-    Author     : Raj-HP
---%>
 
 <%@page import="java.util.Map"%>
-<%@page import="EditTransporter.TransporterList"%>
 <%@page import="java.util.List"%>
 <%@page import="hibernate.helper.Transporter_handler"%>
 <%@page import="hibernate.pojo.TblPlant"%>
@@ -37,6 +31,11 @@
                         document.vehicle.action = "Home";
                     else if(button.id == "next")
                     {
+                        if(document.getElementById("Transporter").length < 1)
+                        {
+                            alert("Add Transporter to add Driver");
+                            return;
+                        }
                         document.vehicle.action = "AddDriver";
                         var dropdown = document.getElementById("Transporter");
                         document.getElementById("TOwner").value = dropdown.value;
@@ -86,7 +85,7 @@
                     <select id="Transporter" class="form-control">
                         <%
                             out.println("<option>Choose Transporter</option>");
-                            TransporterList t = new TransporterList();
+                            hibernate.helper.TransporterList t = new hibernate.helper.TransporterList();
                             List<hibernate.pojo.TblTransporter> transporterList = t.getTransporterList(user.getTblPlant().getIPlantId().toString());
                             for (int i = 0; i < transporterList.size(); i++) {
                                 out.println("<option value=\"" + transporterList.get(i).getITransporterId() + "\">" + transporterList.get(i).getTTransporterName() + "</option>");
