@@ -8,6 +8,7 @@
     <package name="default" extends="struts-default">
         
         <action name="userLogin" class="struts.action.UserLoginAction" method="execute">
+            <result name="superadmin">/jsp/insert/index.jsp</result>
             <result name="success">/jsp/ViewTrips.jsp</result>
             <result name="invalid">/jsp/LoginError.jsp</result>
         </action>
@@ -33,6 +34,9 @@
         </action>
         <action name="inserteposnext" class="struts.action.EposInsertAction" method="execute">
             <result name="Success">/jsp/insert/link.jsp</result>
+        </action>
+        <action name="skipall">
+            <result>/jsp/Login.jsp</result>
         </action>
         <action name="insertlink" class="struts.action.LinkInsertAction" method="execute">
             <result name="Success">/jsp/insert/link.jsp</result>
@@ -130,8 +134,8 @@
         <action name="skipprocess">
             <result>/jsp/insert/path.jsp</result>
         </action>
-        <action name="skip">
-            <result>/jsp/insert/vehicle.jsp</result>
+        <action name="skippath">
+            <result>/jsp/Login.jsp</result>
         </action>
     </package>
 </struts>

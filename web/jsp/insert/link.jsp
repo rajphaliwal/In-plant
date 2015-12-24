@@ -14,11 +14,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../js/jquery-min.js" type="text/javascript"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="../../js/placeholder.js" type="text/javascript"></script>
+        <script src="js/placeholder.js" type="text/javascript"></script>
         <title>Link</title>
         <script>
             function skiplink()
@@ -56,7 +56,7 @@
         <div class="container">
             <div class="row">
                 <div class="jumbotron">
-                    <h2 style="text-align: center">LInks</h2>
+                    <h2 style="text-align: center">Links</h2>
                 </div>
             </div>
             <%

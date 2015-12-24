@@ -62,7 +62,7 @@
                                 <label>Confirm Password:</label> 
                                 <input type="password" class="form-control" id="pwd2" name="cpassword" value=""  placeholder="Confirm password" onfocus="hide(this)" onblur="show(this, 'Confirm Password')"/> <br>
                             </div>
-                            <input type="button" value="Submit" class="btn btn-success col-sm-12" onClick = "insertaction()" />
+                            <input type="submit" value="Submit" class="btn btn-success col-sm-12" onClick = "insertaction()" />
                         </form>
                     
                 </div>
