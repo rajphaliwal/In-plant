@@ -8,6 +8,7 @@ package struts.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
 import hibernate.helper.InsertPlant;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import org.hibernate.Hibernate;
@@ -42,16 +43,36 @@ public class UserLoginAction {
             // wrong username
             return "invalid";
         }
-        
-        if(user.getSPasswordMd5().equals(security.MD5.crypt(password))) // valid user
+        BigDecimal b = new BigDecimal(100);
+        String str = "super";
+        /*if(user.getSUsername().equals(str) && user.getSPasswordMd5().equals(security.MD5.crypt(password)) && user.getTblPlant().getIPlantId().toString() == "100")
         {
-            context.put("user", user); // put user id in the valuestack
-            stack.push(context); //push the object that is to be accessed
-            return "success";
+            return "superadmin";
+        }*/
+        if("super".equals(user.getSUsername()) && "super".equals(user.getSPassword()) && user.getTblPlant().getIPlantId().equals(b))
+        {
+            
+            //System.out.println("In Superadmin");
+            //if(user.getTblPlant().getIPlantId().equals(b))
+            //System.out.println(user.getTblPlant().getIPlantId());
+            return "superadmin";
         }
-        else // wrong password
+        else
         {
-            return "invalid";
+            if(user.getSPasswordMd5().equals(security.MD5.crypt(password))) // valid user
+            {
+                context.put("user", user); // put user id in the valuestack
+                stack.push(context); //push the object that is to be accessed
+                /*System.out.println("In Success");
+                System.out.println(user.getSUsername());
+                System.out.println(user.getSPassword());
+                System.out.println(user.getTblPlant().getIPlantId());*/
+                return "success";
+            }
+            else // wrong password
+            {
+                return "invalid";
+            }
         }
     }
     
@@ -75,5 +96,11 @@ public class UserLoginAction {
         this.password = password;
     }
     
-    
+    public static void main(String[] args) throws Exception {
+        UserLoginAction u = new UserLoginAction();
+        u.setLoginName("super");
+        u.setPassword("super");
+        u.execute();
+        
+    }
 }

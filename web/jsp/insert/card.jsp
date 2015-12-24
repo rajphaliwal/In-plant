@@ -13,11 +13,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="../../js/placeholder.js" type="text/javascript"></script>
+        <script src="js/placeholder.js" type="text/javascript"></script>
         <title>Card</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../js/jquery-min.js" type="text/javascript"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>

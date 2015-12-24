@@ -13,10 +13,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../js/jquery-min.js" type="text/javascript"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../js/placeholder.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/placeholder.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Epos</title>
         <script>
@@ -65,6 +65,11 @@
                 document.epos.action = "skipepos";
                 document.epos.submit();
             }
+            function skipall()
+            {
+                document.epos.action = "skipall";
+                document.epos.submit();
+            }
         </script>
     </head>
     <%
@@ -106,6 +111,8 @@
                         <input type="button" class="btn btn-success btn-success col-sm-12" name="next" id="next" value="Submit And Next Page" onClick = "eposaction(this)" />
                         <div>&nbsp;</div>
                         <input type="button" value="Skip" class="btn btn-info col-sm-12" onClick = "skipepos()" />
+                        <div>&nbsp;</div>
+                        <input type="button" value="Skip All" class="btn btn-info col-sm-12" onClick = "skipall()" />
                     </div>
                 </form>
             </div>

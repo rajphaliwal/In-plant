@@ -14,18 +14,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../js/jquery-min.js" type="text/javascript"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Path</title>
-    </head>
-    <body>
-        <%
-        ValueStack stack = ActionContext.getContext().getValueStack();
-        Map sesion = (Map) ActionContext.getContext().getSession();
-        hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers) sesion.get("user");
-        %>
         <script>
             function pathaction(button)
             {
@@ -40,6 +33,12 @@
                 {
                     document.path.action = "insertpathnext";
                 }
+                else if (button.id === "skip")
+                {
+                    //window.location = "/ProjectInPlant2/";
+                    document.path.action = "skippath";
+
+                }
                 document.path.submit();
             }
             function addPath()
@@ -51,8 +50,18 @@
                 alert(temp);
                 dropdown.options[dropdown.selectedIndex]=null;
             }
+            /*function skip()
+            {
+                window.open('Login.jsp', '_self', false);
+            }*/
         </script>
-        
+    </head>
+    <body>
+        <%
+        ValueStack stack = ActionContext.getContext().getValueStack();
+        Map sesion = (Map) ActionContext.getContext().getSession();
+        hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers) sesion.get("user");
+        %>
         <div class="container">
             <div class="row">
                 <div class="jumbotron">
@@ -82,7 +91,8 @@
                             <input type="hidden" name="addepos" id="addepos" value=""/>
                             <input type="button" class="btn btn-info col-sm-12" name="add" id="addpath" value="Add to path" onClick = "addPath()" /><br><br>          
                             <input type="button" class="btn btn-info col-sm-12" name="add" id="add" value="Add More Paths" onClick = "pathaction(this)" /><br><br>
-                            <input type="button" name="next" class="btn btn-success col-sm-12"  id="next" value="Submit And Next Page" onClick = "pathaction(this)" />
+                            <input type="submit" name="next" class="btn btn-success col-sm-12"  id="next" value="Submit And Next Page" onClick = "pathaction(this)" /><br><br>
+                            <input type="button" name="skip" class="btn btn-success col-sm-12"  id="skip" value="Skip" onClick = "pathaction(this)" />
                         </div>
                     </form>
                 </div>

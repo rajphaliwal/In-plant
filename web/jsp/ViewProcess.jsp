@@ -85,7 +85,7 @@
                 {
                     if(xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                        //location.reload();
+                        location.reload();
                     }
                 };
                 var a = document.getElementById("processname").value;
@@ -100,7 +100,7 @@
                 <div id="list">
                     <input  type="hidden" name="Id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
                     <label>Process Name : </label>
-                    <input type="text" name="processname" id="processname"  value = "a" placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
+                    <input type="text" name="processname" id="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
                     <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
                 </div>

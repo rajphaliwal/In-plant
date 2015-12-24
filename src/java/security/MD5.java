@@ -40,6 +40,6 @@ public class MD5 {
         return hexString.toString();
     }
     public static void main(String args[]){
-        System.out.println(security.MD5.crypt("kaustav"));
+        System.out.println(security.MD5.crypt("super"));
     }
 }

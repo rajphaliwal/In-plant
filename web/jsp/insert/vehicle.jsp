@@ -4,9 +4,10 @@
     Author     : Raj-HP
 --%>
 
+<%@page import="hibernate.helper.TransporterList"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
-<%@page import="EditTransporter.TransporterList"%>
+<%--@page import="EditTransporter.TransporterList"--%>
 <%@page import="hibernate.helper.Transporter_handler"%>
 <%@page import="hibernate.pojo.TblPlant"%>
 <%@page import="com.opensymphony.xwork2.util.ValueStack"%>
@@ -15,10 +16,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../js/jquery-min.js" type="text/javascript"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../js/placeholder.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/placeholder.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Vehicle</title>
     </head>
