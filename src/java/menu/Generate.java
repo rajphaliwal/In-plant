@@ -201,18 +201,21 @@ public class Generate
         Permissions dailyReport = new Permissions(temporary_canView,"Daily Report","loggedIn-ReportDailyForm");
         reports.insertChild(dailyReport);
         
-        //Password
-        Permissions changePassword=new Permissions(true, "Change Password", "loggedIn-ChangePassword");
-        root.insertChild(changePassword);
-        
         //Home
         Permissions home=new Permissions(true, "Home", "Home");
         root.insertChild(home);
         
-        //Logout
-        Permissions logOut=new Permissions(true, "Logout", "Logout");
-        root.insertChild(logOut);
+        //Username
+        Permissions username=new Permissions(true, user.getSUsername(), "#");
+        root.insertChild(username);
         
+        //Change Password
+        Permissions changePassword=new Permissions(true, "Change Password", "loggedIn-ChangePassword");
+        username.insertChild(changePassword);
+        
+        //Logout
+        Permissions logout = new Permissions(true, "Logout", "Logout");
+        username.insertChild(logout);
         
         make_permissions(root);
         

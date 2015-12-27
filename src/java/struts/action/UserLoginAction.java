@@ -39,40 +39,23 @@ public class UserLoginAction {
         session.put("user", user);
         
         if(user == null)
-        {
-            // wrong username
             return "invalid";
-        }
+        
         BigDecimal b = new BigDecimal(100);
         String str = "super";
-        /*if(user.getSUsername().equals(str) && user.getSPasswordMd5().equals(security.MD5.crypt(password)) && user.getTblPlant().getIPlantId().toString() == "100")
-        {
-            return "superadmin";
-        }*/
+        
         if("super".equals(user.getSUsername()) && "super".equals(user.getSPassword()) && user.getTblPlant().getIPlantId().equals(b))
-        {
-            
-            //System.out.println("In Superadmin");
-            //if(user.getTblPlant().getIPlantId().equals(b))
-            //System.out.println(user.getTblPlant().getIPlantId());
             return "superadmin";
-        }
-        else
+        
+        if(user.getSPasswordMd5().equals(security.MD5.crypt(password))) // valid user
         {
-            if(user.getSPasswordMd5().equals(security.MD5.crypt(password))) // valid user
-            {
-                context.put("user", user); // put user id in the valuestack
-                stack.push(context); //push the object that is to be accessed
-                /*System.out.println("In Success");
-                System.out.println(user.getSUsername());
-                System.out.println(user.getSPassword());
-                System.out.println(user.getTblPlant().getIPlantId());*/
-                return "success";
-            }
-            else // wrong password
-            {
-                return "invalid";
-            }
+            context.put("user", user); // put user id in the valuestack
+            stack.push(context); //push the object that is to be accessed
+            return "success";
+        }
+        else // wrong password
+        {
+            return "invalid";
         }
     }
     

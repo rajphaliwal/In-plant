@@ -40,7 +40,6 @@ pageEncoding="ISO-8859-1"%>
     </head>
     <body style="overflow-x: scroll">
         <div id="top">
-            
             <div style="position: fixed; width: 100%"><jsp:include page="Menu.jsp"/></div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
