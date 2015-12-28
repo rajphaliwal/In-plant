@@ -95,33 +95,33 @@
                         location.reload();
                     }
                 };
-                var a = "50";//document.getElementById("ITerminalId").value;
-                var b = "50";//document.getElementById("IGateNo").value;
-                var c = "yahoo"; //document.getElementById("TGatewayName").value;
-                var d = "yahoo"; //document.getElementById("TLocation").value;
+                var a = document.getElementById("ITerminalId").value;
+                var b = document.getElementById("IGateNo").value;
+                var c = document.getElementById("TGatewayName").value;
+                var d = document.getElementById("TLocation").value;
                 
-                xmlhttp.open("GET", "jsp/UpdateEpos.jsp?machine_id=" + "778999" + "&terminal_id=" + a + "&gate_no=" + b + 
+                xmlhttp.open("GET", "jsp/UpdateEpos.jsp?machine_id=" + mat_id + "&terminal_id=" + a + "&gate_no=" + b + 
                                     "&gateway_name=" + c + "&location=" + d , true);
                 xmlhttp.send();
             }
         </script>
         <div id="popDiv" class="ontop">
-            <form id="popup">
+            <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
-                <div id="list">
+                <form>
                     <label>Terminal Id:</label>  
-                    <input type="text" class="form-control" name="ITerminalId" placeholder="Enter Terminal Id" onfocus="hide(this)" onblur="show(this, 'Enter Terminal Id')"/><br>
+                    <input type="text" class="form-control" id="ITerminalId" placeholder="Enter Terminal Id" onfocus="hide(this)" onblur="show(this, 'Enter Terminal Id')"/><br>
                     <label>Gate Number:  </label>
-                    <input type="text" class="form-control" name="IGateNo" placeholder="Enter Gate No" onfocus="hide(this)" onblur="show(this, 'Enter Gate No')"/><br>
+                    <input type="text" class="form-control" id="IGateNo" placeholder="Enter Gate No" onfocus="hide(this)" onblur="show(this, 'Enter Gate No')"/><br>
                     <label>Gateway Name: </label>
-                    <input type="text" class="form-control" name="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')"/><br>
+                    <input type="text" class="form-control" id="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')"/><br>
                     <label>Location:    </label>
-                    <input type="text" class="form-control" name="TLocation" placeholder="Enter Location" onfocus="hide(this)" onblur="show(this, 'Enter Location')"/><br>
+                    <input type="text" class="form-control" id="TLocation" placeholder="Enter Location" onfocus="hide(this)" onblur="show(this, 'Enter Location')"/><br>
                     
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
                     <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </body>
 </html>

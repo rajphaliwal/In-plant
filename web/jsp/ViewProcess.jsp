@@ -95,16 +95,16 @@
             }
         </script>
         <div id="popDiv" class="ontop">
-            <form id="popup">
+            <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
-                <div id="list">
+                <form>
                     <input  type="hidden" name="Id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
                     <label>Process Name : </label>
                     <input type="text" name="processname" id="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
                     <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </body>
 </html>

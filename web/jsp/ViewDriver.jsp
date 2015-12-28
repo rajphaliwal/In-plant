@@ -115,9 +115,9 @@
             }
         </script>
         <div id="popDiv" class="ontop">
-            <form id="popup">
+            <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
-                <div id="list">
+                <form>
                     <label>Driver Name:</label>
                     <input class="form-control" type="text" name="TDriverName" id = "TDriverName" placeholder="Enter Driver Name" onfocus="hide(this)" onblur="show(this, 'Enter Driver Name')"/><br>
                     <label>Driver Address 1: </label>
@@ -137,8 +137,8 @@
                     
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
                     <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </body>
     

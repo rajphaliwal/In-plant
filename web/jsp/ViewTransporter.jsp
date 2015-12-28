@@ -74,12 +74,12 @@
             out.println(getTransporterString);
         %>
         <div id="popDiv" class="ontop">
-            <form id="popup">
+            <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
-                <div id="list">
+                <form>
 
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <form action="">
             <input type="hidden" id="hide" name="id" value="">
