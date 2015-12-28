@@ -17,6 +17,11 @@
             <result name="success">/jsp/{1}.jsp</result>
         </action>
         
+        <action name="changepassword" class="struts.action.ChangePasswordAction" method="execute">
+            <result name="success">/jsp/ViewTrips.jsp</result>
+            <result name="failure">/jsp/ChangePassword.jsp</result>
+        </action>
+        
         <action name="Logout" >
             <result>/jsp/Logout.jsp</result>
         </action>
