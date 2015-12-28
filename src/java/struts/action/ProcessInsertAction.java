@@ -6,6 +6,10 @@
 package struts.action;
 
 import hibernate.helper.Process_handler;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -19,6 +23,16 @@ public class ProcessInsertAction {
     {
         Process_handler c = new Process_handler();
         String result = c.insert_into_table(Integer.parseInt(Id),processname);
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddProcess.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 

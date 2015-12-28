@@ -12,6 +12,10 @@ import hibernate.helper.Epos_handler;
 import hibernate.helper.InsertPlant;
 import hibernate.pojo.TblEpos;
 import java.math.BigDecimal;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -55,7 +59,16 @@ public class EposInsertAction {
                 Integer.parseInt(ITerminalId),TGatewayName,Integer.parseInt(IGateNo),
                 TLocation,false,0);
         }
-        
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddEpos.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 

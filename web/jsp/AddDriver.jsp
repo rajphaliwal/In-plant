@@ -56,6 +56,9 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 jumbotron"> 
                     <h2 style="text-align: center">Add Driver</h2>
+                    <div>
+                        ${status}
+                    </div>
                     <form role="form" name="vehicle" action="" method="post">
                         <input type="hidden" name="Id" value="<% out.print(user.getTblPlant().getIPlantId().toString()); %>" >
                         <div class="form-group">

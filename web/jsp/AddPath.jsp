@@ -57,6 +57,9 @@
                     <h2 style="text-align: center">Path</h2>
                 </div>
             </div>
+            <div>
+                ${status}
+            </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 jumbotron"> 
                     <div class="form-group">

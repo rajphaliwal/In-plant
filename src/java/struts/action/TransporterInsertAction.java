@@ -11,6 +11,10 @@ import hibernate.helper.Users_handler;
 import hibernate.pojo.TblPlant;
 import hibernate.pojo.TblTransporter;
 import java.lang.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 import permission.PermissionHandler;
 
 /**
@@ -44,7 +48,16 @@ public class TransporterInsertAction {
         Users_handler u = new Users_handler();
         String result2=u.insert_into_table(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword),
                                             new PermissionHandler("transporter"));
-        
+        if(result1.equals("Success") && result2.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", "Success");
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddTransporter.jsp");
+            rd.forward(request, response);
+        }
         return result1;
     }
     public static void main(String[] args) throws Exception

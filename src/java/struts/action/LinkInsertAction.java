@@ -6,6 +6,10 @@
 package struts.action;
 
 import hibernate.helper.Link_handler;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -20,6 +24,16 @@ public class LinkInsertAction {
     public String execute()throws Exception{
         Link_handler l = new Link_handler();
         String result=l.insert_into_table(Integer.parseInt(Id),Integer.parseInt(from),Integer.parseInt(to),Integer.parseInt(timeinbetween));
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddLink.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 
