@@ -5,6 +5,11 @@
  */
 package struts.action;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
+
 /**
  *
  * @author Raj-HP
@@ -36,6 +41,16 @@ public class MappingInsertAction {
         {
             result = m.insert_into_table(Integer.parseInt(Id) ,cardid,Integer.parseInt(transporterid)
                 ,vehicleid,Integer.parseInt(driverid),Integer.parseInt(processid),tdate,Integer.parseInt(pathid));
+        }
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddTrip.jsp");
+            rd.forward(request, response);
         }
         return result;
     }

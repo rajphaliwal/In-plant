@@ -155,6 +155,9 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="jumbotron">
                         <h2 style="text-align: center">Mapping</h2>
+                        <div>
+                            ${status}
+                        </div>
                         <div class="form-group">
                             <label for="card">Card No. </label>
                             <select class="form-control" id="Card">

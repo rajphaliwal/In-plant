@@ -54,6 +54,9 @@
                     <h2 style="text-align: center">Card</h2>
                 </div>
             </div>
+            <div>
+                ${status}
+            </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 jumbotron"> 
                     <form role="form" name="card" action="" method="post">

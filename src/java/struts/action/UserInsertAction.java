@@ -6,6 +6,10 @@
 package struts.action;
 
 import hibernate.helper.Users_handler;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 import permission.PermissionHandler;
 
 /**
@@ -86,6 +90,16 @@ public class UserInsertAction {
          
          Users_handler u = new Users_handler();
          String result =u.insert_into_table(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword), p);
+         if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddUser.jsp");
+            rd.forward(request, response);
+        }
          return result;
      }
 

@@ -7,6 +7,10 @@ package struts.action;
 
 import hibernate.helper.Path_handler;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -22,6 +26,16 @@ public class PathInsertAction {
         Path_handler p = new Path_handler();
         //System.out.println(Id + TName + addepos);
         String result = p.insert_into_table(Integer.parseInt(Id), TName, addepos);
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddPath.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 

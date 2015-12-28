@@ -6,6 +6,10 @@
 package struts.action;
 
 import hibernate.helper.Card_handler;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 /**
  *
  * @author Raj-HP
@@ -19,6 +23,16 @@ public class CardInsertAction {
     {
         Card_handler c = new Card_handler();
         String result = c.insert_into_table(Integer.parseInt(Id),cardid);
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddCard.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 

@@ -8,6 +8,10 @@ package struts.action;
 import hibernate.helper.Driver_handler;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -30,6 +34,16 @@ public class DriverInsertAction {
      public String execute() throws Exception{
         Driver_handler d=new Driver_handler();
         String result=d.insert_into_table(Integer.parseInt(TOwner), Integer.parseInt(Id),1, TDriverName, TDriverAddr1,TDriverAddr2, TDriverCity, TStateId, IDriverPin,TCountryId,TDriverEmailId,TLicenceNo);
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddDriver.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 

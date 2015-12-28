@@ -57,6 +57,9 @@
                     <h2 style="text-align: center">LInks</h2>
                 </div>
             </div>
+            <div>
+                ${status}
+            </div>
             <%
                 ValueStack stack = ActionContext.getContext().getValueStack();
                 Map sesion = (Map)ActionContext.getContext().getSession();

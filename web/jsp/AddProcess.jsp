@@ -26,6 +26,9 @@
                     <h2 style="text-align: center">Process</h2>
                 </div>
             </div>
+            <div>
+                ${status}
+            </div>
             <script>
                 function homeprocess()
                 {

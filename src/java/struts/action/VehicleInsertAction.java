@@ -8,6 +8,10 @@ package struts.action;
 import hibernate.helper.Vehicle_handler;
 import hibernate.pojo.TblPlant;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -29,6 +33,16 @@ public class VehicleInsertAction {
     public String execute() throws Exception{
         Vehicle_handler v=new Vehicle_handler();
         String result=v.insert_into_table(vid, Integer.parseInt(Id), TChasisNo, TVehicleType, Long.parseLong(ILoadCapacity),Integer.parseInt(TOwner), TNationalPermit, dtLicenseExpiryDate);
+        if(result.equals("Success"))
+        {
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpServletResponse response = ServletActionContext.getResponse();
+            
+            request.setAttribute("status", result);
+    
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddVehicle.jsp");
+            rd.forward(request, response);
+        }
         return result;
     }
 
