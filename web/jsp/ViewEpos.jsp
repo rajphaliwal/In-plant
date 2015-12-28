@@ -72,7 +72,7 @@
             var mat_id;
             function popup(button)
             {
-                mat_id = button.id;
+                document.getElementById("mat_id").value = button.id;
                 pop('popDiv');
             }
             function xyz()
@@ -100,11 +100,15 @@
                 var c = document.getElementById("TGatewayName").value;
                 var d = document.getElementById("TLocation").value;
                 
-                xmlhttp.open("GET", "jsp/UpdateEpos.jsp?machine_id=" + mat_id + "&terminal_id=" + a + "&gate_no=" + b + 
+                xmlhttp.open("GET", "jsp/UpdateEpos.jsp?machine_id=" + document.getElementById("mat_id").value
+                        + "&terminal_id=" + a + "&gate_no=" + b + 
                                     "&gateway_name=" + c + "&location=" + d , true);
                 xmlhttp.send();
             }
         </script>
+        <form>
+            <input type="hidden" id="mat_id" name="mat_id" value="778999">
+        </form>
         <div id="popDiv" class="ontop">
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
@@ -117,7 +121,6 @@
                     <input type="text" class="form-control" id="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')"/><br>
                     <label>Location:    </label>
                     <input type="text" class="form-control" id="TLocation" placeholder="Enter Location" onfocus="hide(this)" onblur="show(this, 'Enter Location')"/><br>
-                    
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>
                     <input type="button" name="Cancel" id="Cancel" value="Cancel" onClick = "hide('popDiv')" /><br><br>
                 </form>
