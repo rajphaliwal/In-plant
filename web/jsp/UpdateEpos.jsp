@@ -19,11 +19,11 @@
     }
     hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");*/
     
-    String machine_id = "778999";//request.getParameter("machine_id");
-    String terminal_id = "25";  //request.getParameter("terminal_id");
-    String Gate_no = "50";//request.getParameter("gate_no");
-    String Gateway_name = "abc";//request.getParameter("gateway_name");
-    String location = "abc";//request.getParameter("location");
+    String machine_id = request.getParameter("machine_id");
+    String terminal_id = request.getParameter("terminal_id");
+    String Gate_no = request.getParameter("gate_no");
+    String Gateway_name = request.getParameter("gateway_name");
+    String location = request.getParameter("location");
     
     out.println("yooo"+machine_id);
     

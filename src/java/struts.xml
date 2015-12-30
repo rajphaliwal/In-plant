@@ -31,6 +31,9 @@
         <action name="TripDetails*" >
             <result>/jsp/TripDetails.jsp{1}</result>
         </action>
+        <action name="VehicleDetails*" >
+            <result>/jsp/VehicleDetails.jsp{1}</result>
+        </action>
         <action name="insertplant" class="struts.action.PlantInsertAction" method="execute">
             <result name="Success">/jsp/insert/epos.jsp</result>
         </action>

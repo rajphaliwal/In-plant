@@ -37,6 +37,7 @@ public class LiveView
         liveViewString+="<tr>";
         List<hibernate.pojo.TblEpos> eposList = eposListVar.getEposList(user.getTblPlant().getIPlantId());
         List<BigDecimal> machineCodes = new ArrayList<BigDecimal>(eposList.size());
+        liveViewString+="<th>Trip Id</th>";
         liveViewString+="<th>Vehicle Id</th>";
         for(hibernate.pojo.TblEpos i: eposList)
         {
@@ -69,11 +70,13 @@ public class LiveView
             for(hibernate.pojo.TblMapping i: tripList)
             {
                 BigDecimal tripid=i.getITripId();
+                liveViewString+=("<tr>");
+                String href1 = "TripDetails?trip="+i.getITripId();
+                liveViewString+=("<td><a href="+href1+">"+i.getITripId()+"</a></td>");
                 List<hibernate.pojo.TblVehicleFlight> tripDataList = tripDataVar.getTripDataList(tripid,user.getTblPlant().getIPlantId());
                 int TripDataListPointer=0;
-                liveViewString+=("<tr>");
-                String href = "TripDetails?trip="+i.getITripId();
-                liveViewString+=("<td><a href="+href+">"+i.getTblVehicle().getTVehicleId()+"</a></td>");
+                String href2 = "VehicleDetails?vehicle="+i.getITripId();
+                liveViewString+=("<td><a href="+href2+">"+i.getTblVehicle().getTVehicleId()+"</a></td>");
                 for(int j=0;j<machineCodes.size();j++)
                 {
                     if(TripDataListPointer<tripDataList.size() && machineCodes.get(j)==tripDataList.get(TripDataListPointer).getTblEpos().getIMachineId())
