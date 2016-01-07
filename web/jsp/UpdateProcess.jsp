@@ -10,19 +10,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="hibernate.helper.MappingList"%>
 <%
-    /*ValueStack stack = ActionContext.getContext().getValueStack();
+    ValueStack stack = ActionContext.getContext().getValueStack();
     Map sesion = (Map)ActionContext.getContext().getSession();
     if(sesion.get("user")==null)
     {
         RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
         rd.forward(request, response);
     }
-    hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");*/
-    
+    hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");
     String process_id = request.getParameter("process_id");
     String process_name = request.getParameter("process_name");
     
-    
     hibernate.helper.Process_handler pl = new hibernate.helper.Process_handler();
-    pl.update_in_table(Integer.parseInt(process_id),23, process_name);
+    pl.update_in_table(Integer.parseInt(process_id),user.getTblPlant().getIPlantId().intValue(), process_name);
 %>

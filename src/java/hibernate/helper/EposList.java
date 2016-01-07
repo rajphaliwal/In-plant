@@ -27,6 +27,11 @@ public class EposList {
         {
             Query q = session.createQuery ("FROM hibernate.pojo.TblEpos where i_plant_id=" + Id);
             eposList = (List<hibernate.pojo.TblEpos>) q.list();
+            for (int i = 0; i < eposList.size(); i++)
+            {
+                if(eposList.get(i).getIMachineId().intValue() < 0 )
+                    eposList.remove(i);
+            }
             
         }
         catch (Exception e) 

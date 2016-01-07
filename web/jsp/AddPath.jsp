@@ -45,8 +45,9 @@
                 var temp = document.getElementById("addepos").value + dropdown.value;
                 temp = temp + ",";
                 document.getElementById("addepos").value = temp;
-                alert(temp);
+                //alert(temp);
                 dropdown.options[dropdown.selectedIndex]=null;
+                document.getElementById("TName").disabled = true;
             }
         </script>
         <%
@@ -65,27 +66,28 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 jumbotron"> 
-                    <div class="form-group">
-                        <select class="form-control" id="epos" >
-                            <%
-                                out.println("<option>Choose Epos From</option>");
-                                EposList t = new EposList();
-                                List<hibernate.pojo.TblEpos> eposList = t.getEposList(user.getTblPlant().getIPlantId().toString());
-                                for (int i = 0; i < eposList.size(); i++) {
-                                    out.println("<option value=\"" + eposList.get(i).getIMachineId() + "\">" + eposList.get(i).getTGatewayName() + "</option>");
-                                }
-                            %>
-                        </select>
-                        <br><br>
-                    </div>
+                    
                     <form name="path" action="" method="post">
                         <div class="form-group">
                             <label>Path Name</label>
-                            <input class="form-control" type="text" name="TName"/><br>
+                            <input class="form-control" type="text" name="TName" id="TName"/><br>
+                            <div class="form-group">
+                                <select class="form-control" id="epos" >
+                                    <%
+                                        out.println("<option>Choose Epos From</option>");
+                                        EposList t = new EposList();
+                                        List<hibernate.pojo.TblEpos> eposList = t.getEposList(user.getTblPlant().getIPlantId().toString());
+                                        for (int i = 0; i < eposList.size(); i++) {
+                                            out.println("<option value=\"" + eposList.get(i).getIMachineId() + "\">" + eposList.get(i).getTGatewayName() + "</option>");
+                                        }
+                                    %>
+                                </select>
+                                <br><br>
+                            </div>
                             <input type="hidden" name="Id" id="Id" value="<% out.print(user.getTblPlant().getIPlantId().toString()); %>" >
                             <input type="hidden" name="addepos" id="addepos" value=""/>
                             <input type="button" class="btn btn-info col-sm-12" name="add" id="addpath" value="Add to path" onClick = "addPath()" /><br><br>          
-                            <input type="button" class="btn btn-info col-sm-12" name="add" id="add" value="Add More Paths" onClick = "pathaction(this)" /><br><br>
+                            <input type="button" class="btn btn-info col-sm-12" name="add" id="add" value="Save Paths" onClick = "pathaction(this)" /><br><br>
                             <input type="button" name="home" class="btn btn-success col-sm-12"  id="home" value="Home" onClick = "pathaction(this)" />
                         </div>
                     </form>
