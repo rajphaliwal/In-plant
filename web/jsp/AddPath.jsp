@@ -30,11 +30,14 @@
                     document.path.action = "Home";
                     document.path.submit();
                 }
-                var temp = document.getElementById("addepos").value;
-                temp=temp.substring(0,temp.length - 1);
-                document.getElementById("addepos").value = temp;
-                document.path.action = "AddPath";
-                document.path.submit();
+                else
+                {
+                    var temp = document.getElementById("addepos").value;
+                    temp=temp.substring(0,temp.length - 1);
+                    document.getElementById("addepos").value = temp;
+                    document.path.action = "AddPath";
+                    document.path.submit();
+                }
             }
             function addPath()
             {
