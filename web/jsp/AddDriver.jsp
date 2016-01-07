@@ -14,6 +14,13 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/placeholder.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+        <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+        <script>
+          webshims.setOptions('waitReady', false);
+          webshims.setOptions('forms-ext', {types: 'date'});
+          webshims.polyfill('forms forms-ext');
+        </script>
         <title>Driver</title>
     </head>
     <body>
