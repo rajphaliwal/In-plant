@@ -90,7 +90,8 @@
                 };
                 var a = document.getElementById("processname").value;
                 var b = processid;
-                xmlhttp.open("GET", "jsp/UpdateProcess.jsp?process_id=" + b + "&process_name=" + a, true);
+                var c = document.getElementById("plant_id").value;
+                xmlhttp.open("GET", "jsp/UpdateProcess.jsp?plant_id=" + c + "&process_id=" + b + "&process_name=" + a, true);
                 xmlhttp.send();
             }
         </script>
@@ -98,7 +99,7 @@
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
                 <form>
-                    <input  type="hidden" name="Id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
+                    <input  type="hidden" name="Id" id="plant_id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
                     <label>Process Name : </label>
                     <input type="text" name="processname" id="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
                     <input type="button" name="Update" id="Update" value="Update" onClick = "xyz()" /><br><br>

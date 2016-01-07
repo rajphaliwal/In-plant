@@ -5,6 +5,7 @@
  */
 package struts.action;
 
+import hibernate.helper.Mapping_handler;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +56,10 @@ public class MappingInsertAction {
         return result;
     }
 
+    public static void main(String[] args) {
+        Mapping_handler m = new Mapping_handler();
+        m.insert_into_handler(157, "03A956E8", 175, "WH14AQ1478", "Test", 173, null, 165);
+    }
     public String getPathid() {
         return pathid;
     }

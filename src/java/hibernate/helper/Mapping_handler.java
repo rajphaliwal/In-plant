@@ -46,7 +46,7 @@ public class Mapping_handler extends sample_helper
 
             TblMapping drv = new TblMapping();
             drv.setITripId(new BigDecimal(1));
-            drv.setICardId(new BigDecimal(Integer.parseInt(cardid)));
+            //drv.setICardId(new BigDecimal(Integer.parseInt(cardid)));
             drv.setBIsActive(true);
 
             {
@@ -183,7 +183,7 @@ public class Mapping_handler extends sample_helper
 
             TblMapping drv = new TblMapping();
             drv.setITripId(new BigDecimal(1));
-            drv.setICardId(new BigDecimal(Integer.parseInt(cardid)));
+            //drv.setICardId(cardid);
             drv.setBIsActive(true);
             drv.setTDriverName(drivername);
 

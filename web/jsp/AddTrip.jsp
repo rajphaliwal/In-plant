@@ -173,7 +173,7 @@
                                 
                                 HashMap hm = new HashMap();
                                 for(int i=0;i<MappingList.size();i++)
-                                    hm.put(MappingList.get(i).getICardId().toString(),"true");
+                                    hm.put(MappingList.get(i).getTblCard().getCCardId(),"true");
                                 /*for(int i = 0; i < MappingList.size(); i++)
                                 {
                                     out.println("<option value=\""+ MappingList.get(i).getICardId()+"\">"+ MappingList.get(i).getICardId() +"</option>");
@@ -300,7 +300,7 @@
                             <input type="hidden" name="processid" id="processid" value=""/> 
                             <input type="hidden" name="pathid" id="pathid" value=""/> 
                             <div class="form-group">
-                                <label>Date : </label>
+                                <label>Departure Date : </label>
                                 <input class="form-control" type="date" name="tdate">
                             </div>
                             <input class="btn btn-primary col-sm-12" type="button" value="Start Trip" onClick="trip()"><br><br>

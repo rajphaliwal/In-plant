@@ -202,9 +202,9 @@
                     </div>
                     <div class="form-group">
                         <label for="Driver">Driver </label>
-                        <select class="form-control" id="Driver" onchange="show()">
+                        <select class="form-control" id="Driver" onclick="show()">
                         <option>Choose Driver </option>
-                    </select>
+                        </select>
                     </div>    
                     <br>
 
@@ -221,7 +221,7 @@
                             <input type="hidden" name="driverid" id="driverid" value=""/>
                             <input type="hidden" name="processid" id="processid" value=""/>  
                             <div class="form-group">
-                                <label>Date : </label>
+                                <label>Departure Date : </label>
                                 <input class="form-control" type="date" name="tdate">
                             </div>
                             <input class="btn btn-primary col-sm-12" type="button" value="Start Trip" onClick="trip()"><br><br>
