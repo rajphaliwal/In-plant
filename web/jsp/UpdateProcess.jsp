@@ -16,6 +16,7 @@
         RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
         rd.forward(request, response);
     }
+
     hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");*/
     String plant_id = request.getParameter("plant_id");
     String process_id = request.getParameter("process_id");
