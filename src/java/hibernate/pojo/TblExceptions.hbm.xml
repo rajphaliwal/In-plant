@@ -6,7 +6,7 @@
     <class name="hibernate.pojo.TblExceptions" table="tbl_exceptions" schema="pr_inplant" optimistic-lock="version">
         <id name="IExceptionId" type="big_decimal">
             <column name="i_exception_id" precision="32" scale="0" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <many-to-one name="tblEpos" class="hibernate.pojo.TblEpos" fetch="select">
             <column name="i_machine_id" precision="30" scale="0" not-null="true" />

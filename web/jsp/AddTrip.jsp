@@ -121,7 +121,7 @@
                 document.getElementById("vehicleid").value=document.getElementById("Vehicle").value;
                 document.getElementById("driverid").value=document.getElementById("Driver").value;
                 document.getElementById("processid").value=document.getElementById("Process").value;
-                //document.getElementById("pathid").value=document.getElementById("Process").value;
+                //document.getElementById("pathid").value=document.getElementById("path").value;
                 
                 document.mapping.action="starttrip";
                 document.mapping.submit();
