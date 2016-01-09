@@ -5,6 +5,7 @@
  */
 package liveView;
 
+import hibernate.helper.Users_handler;
 import hibernate.pojo.TblUsers;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -29,7 +30,13 @@ public class LiveView
         tripDataVar = new liveView.TripData();
                 
     }
-    
+    public static void main(String[] args) {
+        LiveView l = new LiveView();
+        Users_handler u = new Users_handler();
+        TblUsers user = u.get_tuple("PLANT_ADMIN");
+        String s = l.getLiveView(user);
+        System.out.println("helllllloooooo");
+    }
     public String getLiveView(TblUsers user) 
     {
         liveViewString+="<table border=\"1\" id=\"liveTable\" width=\"100%\">";
@@ -73,15 +80,29 @@ public class LiveView
                 liveViewString+=("<tr>");
                 String href1 = "TripDetails?trip="+i.getITripId();
                 liveViewString+=("<td><a href="+href1+">"+i.getITripId()+"</a></td>");
-                List<hibernate.pojo.TblVehicleFlight> tripDataList = tripDataVar.getTripDataList(tripid,user.getTblPlant().getIPlantId());
-                int TripDataListPointer=0;
+                
                 String href2 = "VehicleDetails?vehicle="+i.getITripId();
                 liveViewString+=("<td><a href="+href2+">"+i.getTblVehicle().getTVehicleId()+"</a></td>");
+                
+                List<hibernate.pojo.TblVehicleFlight> tripDataList = tripDataVar.getTripDataList(tripid,user.getTblPlant().getIPlantId());
+                /*for(int m=0,k=0; k < tripDataList.size();)
+                    if(tripDataList.get(k).getTblEpos().getIMachineId().intValue() == machineCodes.get(m).intValue())
+                    {
+                        System.out.println(tripDataList.get(k).getTblEpos().getIMachineId() + "  " + machineCodes.get(m));
+                        k++;
+                        m++;
+                    }
+                    else
+                        m++;*/
+                int TripDataListPointer=0;
                 for(int j=0;j<machineCodes.size();j++)
                 {
-                    if(TripDataListPointer<tripDataList.size() && machineCodes.get(j)==tripDataList.get(TripDataListPointer).getTblEpos().getIMachineId())
+                    //System.out.println( "Hello" + tripDataList.get(TripDataListPointer).getDtTime().toString());
+                    //System.out.println(machineCodes.get(j) + "   " + tripDataList.get(TripDataListPointer).getTblEpos().getIMachineId());
+                    if(TripDataListPointer < tripDataList.size() && machineCodes.get(j).intValue() ==tripDataList.get(TripDataListPointer).getTblEpos().getIMachineId().intValue())
                     {
-                        liveViewString+=("<td>"+tripDataList.get(TripDataListPointer).getDtTime()+"</td>");
+                        liveViewString+=("<td>"+tripDataList.get(TripDataListPointer).getDtTime().toString()+"</td>");
+                        //System.out.println( "Hello" + tripDataList.get(TripDataListPointer).getDtTime());
                         TripDataListPointer++;
                     }            
                     else
@@ -104,12 +125,5 @@ public class LiveView
         return liveViewString;
     }
     
-    public static void main(String args[])
-    {
-        LiveView l = new LiveView();
-        hibernate.pojo.TblUsers user;    
-        Session s=hibernate.helper.NewHibernateUtil.getSessionFactory().openSession();
-        user=(hibernate.pojo.TblUsers)s.get(hibernate.pojo.TblUsers.class, "Admin");
-        System.out.println(l.getLiveView(user));
-    }
+    
 }
