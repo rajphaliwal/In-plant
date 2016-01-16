@@ -50,16 +50,16 @@ public class Link_handler {
             else    throw new Exception();
             
             if(fromepos!=null)
-                   lp.setTblEposByIFrom(fromepos);
+                   lp.setTblEposIFrom(fromepos);
             else    throw new Exception();
             
             if(toepos!=null)
-                   lp.setTblEposByITo(toepos);
+                   lp.setTblEposITo(toepos);
             else    throw new Exception();
             
             lp.setNTimediffInMin(new BigDecimal(time));
             
-            
+            System.out.println(lp.getTblEposIFrom().getTGatewayName() + "    " + lp.getTblEposITo().getTGatewayName());
             
             session.save(lp);
             tx.commit();
@@ -98,8 +98,8 @@ public class Link_handler {
             if(plant==null)  throw  new Exception();
            
             t.setTblPlant(plant);
-            t.setTblEposByITo(null);
-            t.setTblEposByIFrom(null);
+            t.setTblEposITo(null);
+            t.setTblEposIFrom(null);
             t.setNTimediffInMin(new BigDecimal(time));
             
             tx.commit();

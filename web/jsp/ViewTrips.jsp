@@ -31,12 +31,7 @@ pageEncoding="ISO-8859-1"%>
                 setTimeout("location.reload(true);", t);
             }*/
         </script>
-        <%
-           /* response.setHeader("Cache-Control","no-cache");
-            response.setHeader("Cache-Control","no-store");
-            response.setDateHeader("Expires", 0);
-            response.setHeader("Pragma","no-cache");*/
-        %>
+        
     </head>
     <body style="overflow-x: scroll">
         <div id="top">

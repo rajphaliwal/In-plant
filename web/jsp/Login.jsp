@@ -15,12 +15,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <%
-            response.setHeader("Cache-Control","no-cache");
-            response.setHeader("Cache-Control","no-store");
-            response.setDateHeader("Expires", 0);
-            response.setHeader("Pragma","no-cache");
-        %>
+        
     </head>
     <body>
     <div class="container">

@@ -11,8 +11,8 @@ public class TblLinks  implements java.io.Serializable {
 
 
      private BigDecimal ILid;
-     private TblEpos tblEposByITo;
-     private TblEpos tblEposByIFrom;
+     private TblEpos tblEposITo;
+     private TblEpos tblEposIFrom;
      private TblPlant tblPlant;
      private BigDecimal NTimediffInMin;
 
@@ -26,8 +26,8 @@ public class TblLinks  implements java.io.Serializable {
     }
     public TblLinks(BigDecimal ILid, TblEpos tblEposByITo, TblEpos tblEposByIFrom, TblPlant tblPlant, BigDecimal NTimediffInMin) {
        this.ILid = ILid;
-       this.tblEposByITo = tblEposByITo;
-       this.tblEposByIFrom = tblEposByIFrom;
+       this.tblEposITo = tblEposByITo;
+       this.tblEposIFrom = tblEposByIFrom;
        this.tblPlant = tblPlant;
        this.NTimediffInMin = NTimediffInMin;
     }
@@ -39,19 +39,19 @@ public class TblLinks  implements java.io.Serializable {
     public void setILid(BigDecimal ILid) {
         this.ILid = ILid;
     }
-    public TblEpos getTblEposByITo() {
-        return this.tblEposByITo;
+    public TblEpos getTblEposITo() {
+        return this.tblEposITo;
     }
     
-    public void setTblEposByITo(TblEpos tblEposByITo) {
-        this.tblEposByITo = tblEposByITo;
+    public void setTblEposITo(TblEpos tblEposByITo) {
+        this.tblEposITo = tblEposByITo;
     }
-    public TblEpos getTblEposByIFrom() {
-        return this.tblEposByIFrom;
+    public TblEpos getTblEposIFrom() {
+        return this.tblEposIFrom;
     }
     
-    public void setTblEposByIFrom(TblEpos tblEposByIFrom) {
-        this.tblEposByIFrom = tblEposByIFrom;
+    public void setTblEposIFrom(TblEpos tblEposByIFrom) {
+        this.tblEposIFrom = tblEposByIFrom;
     }
     public TblPlant getTblPlant() {
         return this.tblPlant;
