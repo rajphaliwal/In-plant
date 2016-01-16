@@ -33,9 +33,21 @@ public class DriverList
         try 
         {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery ("FROM hibernate.pojo.TblDriver where i_transporter_id = " + t);
-            driverList = (List<hibernate.pojo.TblDriver>) q.list();
-            //Collections.sort(driverList);
+            Query q;
+            Transporter_handler th = new Transporter_handler();
+            TblTransporter trans = th.get_tuple(Integer.parseInt(t));
+            if(trans == null)
+            {
+                //System.out.println("@@@@@@@@@@@@@@@@@@Transporter not found@@@@@@@@@@@@@@@@@@@");
+                q = session.createQuery ("FROM hibernate.pojo.TblDriver where i_plant_id = " + t);
+                driverList = (List<hibernate.pojo.TblDriver>) q.list();
+            }
+            else
+            {
+                //System.out.println("@@@@@@@@@@@@@@@@@@Transporter found@@@@@@@@@@@@@@@@@@@");
+                q = session.createQuery ("FROM hibernate.pojo.TblDriver where i_transporter_id = " + t);
+                driverList = (List<hibernate.pojo.TblDriver>) q.list();
+            }
         }
         catch (Exception e) 
         {

@@ -323,5 +323,85 @@ import permission.PermissionHandler;
         System.out.println(u.get_tuple("Admin"));
     }
 
+    public String insert_into_table_transporter(String User_name,int plant_id,String password,String password_md5, PermissionHandler p,int t_id)/* String tr_mob_no,String tr_address,String tr_city,String tr_state,String tr_pin,String  tr_email_id) */
+    {
+        boolean error_flag=false;
+        session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+    
+        org.hibernate.Transaction tx = null;
+        try
+        {
+           
+            tx=session.beginTransaction();
+            
+            TblUsers u=new TblUsers();//TblTransporter();
+            u.setSUsername(User_name);
+            
+            {
+                Plant_handler ph=new Plant_handler();
+                TblPlant plant= ph.get_tuple(plant_id);
+           
+            if(plant!=null)
+                    u.setTblPlant(plant);
+            else    throw new Exception("Foreign Key Plant_id Dependency Failed ");
+            
+            }
+            u.setITransporterId(new BigDecimal(t_id));
+            u.setSUsername(User_name);
+            u.setSPassword(password);
+            u.setSPasswordMd5(password_md5);
+            // adding permissions as in the permissionHandler object
+            u.setBAddDriver(p.getBAddDriver());
+            u.setBAddTrip(p.getBAddTrip());
+            u.setBAddUser(p.getBAddUser());
+            u.setBAddVehicle(p.getBAddVehicle());
+            u.setBChangeCurrentPlant(p.getBChangeCurrentPlant());
+            u.setBEndException(p.getBEndException());
+            u.setBLoggedIn(p.getBLoggedIn());
+            u.setBModifyDriver(p.getBModifyDriver());
+            u.setBModifyUser(p.getBModifyUser());
+            u.setBModifyVehicle(p.getBModifyVehicle());
+            u.setBNodeView(p.getBNodeView());
+            u.setBPlantModify(p.getBPlantModify());
+            u.setBRemoveTrip(p.getBRemoveTrip());
+            u.setBSetupNewPlant(p.getBSetupNewPlant());
+            u.setBViewDo(p.getBViewDo());
+            u.setBViewException(p.getBViewException());
+            u.setBViewHistory(p.getBViewHistory());
+            u.setBViewTrip(p.getBViewTrip());
+            u.setBAddCard(p.getBAddCard());
+            u.setBAddEpos(p.getBAddEpos());
+            u.setBAddPath(p.getBAddEpos());
+            u.setBAddProcess(p.getBAddProcess());
+            u.setBAddTransporter(p.getBAddTransporter());
+            u.setBAddLink(p.getBAddLink());
+            u.setBModifyCard(p.getBModifyCard());
+            u.setBModifyEpos(p.getBModifyEpos());
+            u.setBModifyLink(p.getBModifyLink());
+            u.setBModifyPath(p.getBModifyPath());
+            u.setBModifyProcess(p.getBModifyProcess());
+            u.setBModifyTransporter(p.getBModifyTransporter());
+            
+            session.save(u);
+            
+            tx.commit();                               
+             //throw new Exception("Method Not Overwritten Yet");
+        }
+        catch(Exception e)
+        {
+            error_flag=true; 
+            if (tx != null) {
+                tx.rollback();               
+             e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+           if(error_flag==false) return "Success";
+           else         return "Failure";
+        }
+    }
+
     
 }

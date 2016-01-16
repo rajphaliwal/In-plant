@@ -5,12 +5,16 @@
  */
 package struts.action;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 import hibernate.helper.InsertPlant;
 import hibernate.helper.Transporter_handler;
 import hibernate.helper.Users_handler;
 import hibernate.pojo.TblPlant;
 import hibernate.pojo.TblTransporter;
 import java.lang.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,9 +49,16 @@ public class TransporterInsertAction {
         Transporter_handler t = new Transporter_handler();
         String result1 = t.insert_into_table(Integer.parseInt(Id), TTransporterName, TTransporterMobileNo, TTransporterAddr, TTransporterCity, TTransporterState, ITransporterPin, TTransporterEmailId);
         
-        Users_handler u = new Users_handler();
-        String result2=u.insert_into_table(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword),
-                                            new PermissionHandler("transporter"));
+        ValueStack stack = ActionContext.getContext().getValueStack();
+        //Map<String, Object> context = new HashMap<String, Object>();
+        TblTransporter trans = (TblTransporter)stack.findValue("transporter");
+        String result2 = null;
+        if(trans != null)
+        {
+            Users_handler u = new Users_handler();
+            result2=u.insert_into_table_transporter(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword),
+                                                new PermissionHandler("transporter"),trans.getITransporterId().intValue());
+        }
         if(result1.equals("Success") && result2.equals("Success"))
         {
             HttpServletRequest request = ServletActionContext.getRequest();

@@ -105,8 +105,6 @@ public class Transporter_handler extends sample_helper
                 throw new Exception("Foreign Key Plant_id Dependency Failed ");
             }
 
-            
-
             trp.setTTransporterName(tr_name);
             trp.setTTransporterMobileNo(tr_mob_no);
             trp.setTTransporterAddr(tr_address);
@@ -114,6 +112,11 @@ public class Transporter_handler extends sample_helper
             trp.setTTransporterState(tr_state);
             trp.setITransporterPin(tr_pin);
             trp.setTTransporterEmailId(tr_email_id);
+            
+            ValueStack stack = ActionContext.getContext().getValueStack();
+            HashMap<String, Object> context = new HashMap<String, Object>();
+            context.put("transporter", trp);
+            stack.push(context);
 
             session.save(trp);
 
@@ -376,7 +379,8 @@ public class Transporter_handler extends sample_helper
         {
             // org.hibernate.Transaction tx=session.beginTransaction();
             tx = session.beginTransaction();
-            plant = (TblTransporter) session.get(TblTransporter.class, new BigDecimal(name));
+            plant = (TblTransporter) session.get(TblTransporter.class, name);
+            System.out.println(plant.getITransporterId());
         }
         catch (Exception e)
         {

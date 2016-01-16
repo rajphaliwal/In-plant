@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 6, 2015 4:01:11 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="hibernate.pojo.TblVehicle" table="tbl_vehicle" schema="pr_inplant" optimistic-lock="version">
+    <class name="hibernate.pojo.TblVehicle" table="tbl_vehicle" schema="pr_inplant" optimistic-lock="version" lazy="false"  >
         <id name="TVehicleId" type="string">
             <column name="t_vehicle_id" />
             <generator class="assigned" />

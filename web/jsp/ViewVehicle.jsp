@@ -41,7 +41,7 @@
                 getVehicleString+="<th>Vehicle Type</th>";
                 getVehicleString+="<th>Load Capacity</th>";
                 getVehicleString+="<th>National Permit</th>";
-                getVehicleString+="<th>Owner </th>";
+                getVehicleString+="<th>Transporter Name</th>";
                 if(user.getBPlantModify())
                 {
                     getVehicleString+="<th>Modify Vehicle</th>";
@@ -58,7 +58,7 @@
                     getVehicleString+=("<td>" + i.getTVehicleType() + "</td>");
                     getVehicleString+=("<td>" + i.getILoadCapacity() + "</td>");
                     getVehicleString+=("<td>" + i.getTNationalPermit() + "</td>");
-                    getVehicleString+=("<td>" + i.getTOwner() + "</td>");
+                    getVehicleString+=("<td>" + i.getTblTransporter().getTTransporterName() + "</td>");
                     if(user.getBPlantModify())
                     {
                         getVehicleString+=("<td><button id=\"" + i.getTVehicleId() + "\" value=\"" + rowId + "\" type=\"button\" onclick=\"pop('popDiv')\"> Modify </button> </td>");

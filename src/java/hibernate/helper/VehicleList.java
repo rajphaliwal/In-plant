@@ -32,9 +32,21 @@ public class VehicleList
         this.session = hibernate.helper.NewHibernateUtil.getSessionFactory().openSession();
         try 
         {
-            Query q = session.createQuery ("FROM hibernate.pojo.TblVehicle where i_transporter_id = " + t);
-            vehicleList = (List<hibernate.pojo.TblVehicle>) q.list();
-            
+            Query q;
+            Transporter_handler th = new Transporter_handler();
+            TblTransporter trans = th.get_tuple(Integer.parseInt(t));
+            if(trans == null)
+            {
+                //System.out.println("@@@@@@@@@@@@@@@@@@Transporter not found@@@@@@@@@@@@@@@@@@@");
+                q = session.createQuery ("FROM hibernate.pojo.TblVehicle where i_plant_id = " + t);
+                vehicleList = (List<hibernate.pojo.TblVehicle>) q.list();
+            }
+            else
+            {
+                //System.out.println("@@@@@@@@@@@@@@@@@@Transporter found@@@@@@@@@@@@@@@@@@@");
+                q = session.createQuery ("FROM hibernate.pojo.TblVehicle where i_transporter_id = " + t);
+                vehicleList = (List<hibernate.pojo.TblVehicle>) q.list();
+            }
         }
         catch (Exception e) 
         {
@@ -46,9 +58,5 @@ public class VehicleList
         }
        return vehicleList;
     }
-    public static void main(String args[])
-    {
-        VehicleList t = new VehicleList();
-        System.out.println(t.getVehicleList("17"));
-    }
+    
 }
