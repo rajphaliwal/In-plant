@@ -4,6 +4,7 @@
     Author     : Raj-HP
 --%>
 
+<%@page import="hibernate.pojo.TblEpos"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.opensymphony.xwork2.util.ValueStack"%>
@@ -52,8 +53,8 @@
                 for(hibernate.pojo.TblLinks i: linkList)
                 {
                     getLinkString+="<tr>";
-                    getLinkString+=("<td>" + i.getTblEposByIFrom() + "</td>");
-                    getLinkString+=("<td>" + i.getTblEposByITo() + "</td>");
+                    getLinkString+=("<td>" + i.getTblEposIFrom().getTGatewayName() + "</td>");
+                    getLinkString+=("<td>" + i.getTblEposITo().getTGatewayName() + "</td>");
                     getLinkString+=("<td>" + i.getNTimediffInMin() + "</td>");
                     if(user.getBPlantModify())
                     {

@@ -48,7 +48,7 @@ public class Process_handler {
             c.setIProcessId(BigDecimal.ZERO);
             c.setTProcessType(processname);
             
-            
+            //System.out.println(c.);
             
             
             session.save(c);

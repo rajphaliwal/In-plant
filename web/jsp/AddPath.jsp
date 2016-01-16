@@ -43,6 +43,16 @@
             {
                 var dropdown = document.getElementById("epos");
                 var temp = document.getElementById("addepos").value + dropdown.value;
+                
+                var p = document.createElement("p");
+                var node = document.createTextNode(dropdown.options[dropdown.selectedIndex].text);
+                p.appendChild(node);
+                
+                var parent = document.getElementById("div1");
+                var child = document.getElementById("Id");
+                parent.insertBefore(p, child);
+                
+                //document.getElementById("fullpath").value += dropdown.options[dropdown.selectedIndex].text + "->";
                 temp = temp + ",";
                 document.getElementById("addepos").value = temp;
                 //alert(temp);
@@ -54,7 +64,7 @@
                 ValueStack stack = ActionContext.getContext().getValueStack();
                 Map sesion = (Map)ActionContext.getContext().getSession();
                 hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");
-            %>
+        %>
         <div class="container">
             <div class="row">
                 <div class="jumbotron">
@@ -68,10 +78,10 @@
                 <div class="col-md-4 col-md-offset-4 jumbotron"> 
                     
                     <form name="path" action="" method="post">
-                        <div class="form-group">
+                        <div class="form-group" id="div1">
                             <label>Path Name</label>
                             <input class="form-control" type="text" name="TName" id="TName"/><br>
-                            <div class="form-group">
+                            <div class="form-group" id="div2">
                                 <select class="form-control" id="epos" >
                                     <%
                                         out.println("<option>Choose Epos From</option>");
