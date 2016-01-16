@@ -36,7 +36,7 @@ public class TripData
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery ("from TblVehicleFlight where i_trip_id="+b+" and IPlantId="+IPlantID+" order by dtTime");
             TripDataList = (List<hibernate.pojo.TblVehicleFlight>) q.list();
-            Collections.sort(TripDataList);
+            //Collections.sort(TripDataList);
             for(TblVehicleFlight i:TripDataList)
             {
                 Hibernate.initialize(i.getTblEpos());

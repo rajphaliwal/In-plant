@@ -29,7 +29,7 @@ public class Link
         try 
         {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from TblLinks where tblEposByITo="+ITo+" and tblEposByIFrom = "+IFrom+" and tblPlant="+IPlantID);
+            Query q = session.createQuery("from TblLinks where i_to="+ITo+" and i_from = "+IFrom+" and tblPlant="+IPlantID);
             link = (hibernate.pojo.TblLinks)q.uniqueResult();
         } 
         catch (Exception e) 
@@ -47,7 +47,10 @@ public class Link
     public static void main(String args[])
      {
          Link l= new Link();
-         hibernate.pojo.TblLinks link = l.getEposName(new BigDecimal("5"), new BigDecimal("4"), new BigDecimal("1"));
-         System.out.println(link.getILid());
+         hibernate.pojo.TblLinks link = l.getEposName(new BigDecimal("157"), new BigDecimal("156"), new BigDecimal("157"));
+         if(link == null)
+             System.out.println("Null");
+         else
+            System.out.println(link.getILid());
      }
 }

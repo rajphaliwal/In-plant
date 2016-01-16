@@ -45,6 +45,7 @@ public class ApproachingList
                 for(hibernate.pojo.TblMapping j :i.getTblMappings())
                 {
                     VehicleList.add(j);
+                    System.out.println(j.getITripId());
                     Hibernate.initialize(j.getTblTransporter());
                     Hibernate.initialize(j.getTblDriver());
                     Hibernate.initialize(j.getTblVehicle());

@@ -57,23 +57,35 @@ public class NodeView
         {
             nodeViewString+=("<tr>");
             nodeViewString+=("<td>"+i.getTblVehicle().getTVehicleId()+"</td>");
-            nodeViewString+=("<td>"+i.getTblDriver().getTDriverName()+"</td>");
+            if(i.getTblDriver() == null)
+                nodeViewString+=("<td>"+i.getTDriverName()+"</td>");
+            else
+                nodeViewString+=("<td>"+i.getTblDriver().getTDriverName()+"</td>");
             nodeViewString+=("<td>"+i.getTblTransporter().getTTransporterName()+"</td>");
             
             List<hibernate.pojo.TblVehicleFlight> tripDataList = tripDataVar.getTripDataList(i.getITripId(),IPlantID);
-            hibernate.pojo.TblVehicleFlight lastChecked = tripDataList.get(tripDataList.size()-1);
-            
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(lastChecked.getDtTime());
-            
-            nodeViewString+=("<td>"+lastChecked.getTblEpos().getTGatewayName()+" </br> "+ cal.getTime()+"</td>");
-            
-            hibernate.pojo.TblLinks link = linkVar.getEposName(new BigDecimal(TNext), lastChecked.getTblEpos().getIMachineId(), IPlantID);
-            
-            
-            cal.add(Calendar.MINUTE, link.getNTimediffInMin().intValue());
-            
-            nodeViewString+=("<td>"+cal.getTime()+"</td>");
+            System.out.println(tripDataList.size());
+            if(tripDataList.size() == 0)
+            {
+                nodeViewString+=("<td> NA </td>");
+                nodeViewString+=("<td> NA </td>");
+            }
+            else
+            {
+                hibernate.pojo.TblVehicleFlight lastChecked = tripDataList.get(tripDataList.size()-1);
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(lastChecked.getDtTime());
+
+                nodeViewString+=("<td>"+lastChecked.getTblEpos().getTGatewayName()+" </br> "+ cal.getTime()+"</td>");
+                System.out.println(lastChecked.getTblEpos().getIMachineId() + "    " + TNext);
+                hibernate.pojo.TblLinks link = linkVar.getEposName(new BigDecimal(TNext), lastChecked.getTblEpos().getIMachineId(), IPlantID);
+
+
+                cal.add(Calendar.MINUTE, link.getNTimediffInMin().intValue());
+
+                nodeViewString+=("<td>"+cal.getTime()+"</td>");
+            }
             nodeViewString+=("</tr>");
         }
         nodeViewString+="</table>";
@@ -82,6 +94,6 @@ public class NodeView
     public static void main(String args[])
     {
         NodeView g=new NodeView();
-        System.out.println(g.getNodeView(BigDecimal.ONE, "5"));
+        System.out.println(g.getNodeView(new BigDecimal(157), "157"));
     }
 }

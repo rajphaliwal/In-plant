@@ -24,7 +24,7 @@ public class Link_handler {
     private Session session;
     
     
-    public String insert_into_table(int plant_id,int to,int from,int time){
+    public String insert_into_table(int plant_id,int from,int to,int time){
         
         boolean error_flag=false;
         
