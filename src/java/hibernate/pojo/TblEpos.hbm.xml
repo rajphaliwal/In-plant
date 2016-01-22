@@ -11,6 +11,9 @@
         <many-to-one name="tblPlant" class="hibernate.pojo.TblPlant" fetch="select">
             <column name="i_plant_id" precision="32" scale="0" not-null="true" />
         </many-to-one>
+        <many-to-one name="tblType" class="hibernate.pojo.TblType" fetch="select">
+            <column name="i_type_id" precision="32" scale="0" not-null="false" />
+        </many-to-one>
         <property name="ITerminalId" type="big_decimal">
             <column name="i_terminal_id" precision="32" scale="0" not-null="true" />
         </property>

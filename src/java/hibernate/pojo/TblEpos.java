@@ -14,6 +14,7 @@ public class TblEpos  implements java.io.Serializable, Comparable<TblEpos> {
 
      private BigDecimal IMachineId;
      private TblPlant tblPlant;
+     private TblType tblType;
      private BigDecimal ITerminalId;
      private BigDecimal IGateNo;
      private String TGatewayName;
@@ -48,6 +49,14 @@ public class TblEpos  implements java.io.Serializable, Comparable<TblEpos> {
        this.tblVehicleFlights = tblVehicleFlights;
        this.tblLinksesForITo = tblLinksesForITo;
        this.tblLinksesForIFrom = tblLinksesForIFrom;
+    }
+
+    public TblType getTblType() {
+        return tblType;
+    }
+
+    public void setTblType(TblType tblType) {
+        this.tblType = tblType;
     }
    
     public BigDecimal getIMachineId() {

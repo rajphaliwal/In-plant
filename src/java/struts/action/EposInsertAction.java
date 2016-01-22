@@ -31,6 +31,7 @@ public class EposInsertAction {
      private String ITimeInBetween;
      private String IPlantId;
      private String Bothway;
+     private String ITypeId;
      
     public String execute() throws Exception{
         InsertPlant i=new InsertPlant();
@@ -41,21 +42,21 @@ public class EposInsertAction {
         if(b)
         {
             result=e.insert_into_table(Integer.parseInt(IMachineId),
-                Integer.parseInt(IPlantId),
+                Integer.parseInt(IPlantId),Integer.parseInt(ITypeId),
                 Integer.parseInt(ITerminalId),TGatewayName,Integer.parseInt(IGateNo),
                 TLocation,true,Integer.parseInt(ITimeInBetween));
             int macid=Integer.parseInt(IMachineId);
             macid*=(-1);
             String name=TGatewayName + " Exit";
             result=e.insert_into_table(macid,
-                Integer.parseInt(IPlantId),
+                Integer.parseInt(IPlantId),Integer.parseInt(ITypeId),
                 Integer.parseInt(ITerminalId),name,Integer.parseInt(IGateNo),
                 TLocation,true,Integer.parseInt(ITimeInBetween));
         } 
         else
         {
             result=e.insert_into_table(Integer.parseInt(IMachineId),
-                Integer.parseInt(IPlantId),
+                Integer.parseInt(IPlantId),Integer.parseInt(ITypeId),
                 Integer.parseInt(ITerminalId),TGatewayName,Integer.parseInt(IGateNo),
                 TLocation,false,0);
         }
@@ -70,6 +71,14 @@ public class EposInsertAction {
             rd.forward(request, response);
         }
         return result;
+    }
+
+    public String getITypeId() {
+        return ITypeId;
+    }
+
+    public void setITypeId(String ITypeId) {
+        this.ITypeId = ITypeId;
     }
 
     public String getBothway() {

@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
 import hibernate.pojo.TblEpos;
 import hibernate.pojo.TblPlant;
+import hibernate.pojo.TblType;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Epos_handler extends sample_helper{
 
      
     
-      public String insert_into_table(int machine_id,int plant_id,int terminal_id,String Gateway_name,int gateno,String Location,boolean isbothway,int time)
+      public String insert_into_table(int machine_id,int plant_id, int type_id,int terminal_id,String Gateway_name,int gateno,String Location,boolean isbothway,int time)
   {
         boolean error_flag=false;
         session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
@@ -53,7 +54,12 @@ public class Epos_handler extends sample_helper{
                    ep.setTblPlant(plant);
             else    throw new Exception();
             
-            
+            Type_handler t = new Type_handler();
+            TblType type = t.get_tuple(type_id);
+                    
+            if(type!=null)
+                   ep.setTblType(type);
+            else    throw new Exception();
             
             ep.setITerminalId(new BigDecimal(terminal_id));
             ep.setTGatewayName(Gateway_name);

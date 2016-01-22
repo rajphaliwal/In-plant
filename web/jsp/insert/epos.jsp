@@ -5,6 +5,7 @@
     17251
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="hibernate.pojo.TblPlant"%>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
@@ -70,6 +71,11 @@
                 document.epos.action = "skipall";
                 document.epos.submit();
             }
+            function set_type()
+            {
+                var a = document.getElementById("Type").value;
+                document.getElementById("ITypeId").value = a;
+            }
         </script>
     </head>
     <%
@@ -87,6 +93,8 @@
             <div class="col-md-4 col-md-offset-4 jumbotron"> 
                 <form name="epos" action="" method="post">
                     <input  type="hidden" name="IPlantId" value="<% out.print(user.getTblPlant().getIPlantId().toString());%>"/>
+                    <input  type="hidden" name="ITypeId" id="ITypeId" value=""/>
+
                     <div class="form-group">
                         <label>Terminal Id:</label>  
                         <input type="text" class="form-control" name="ITerminalId" placeholder="Enter Terminal Id" onfocus="hide(this)" onblur="show(this, 'Enter Terminal Id')"/><br>
@@ -98,6 +106,18 @@
                         <input type="text" class="form-control" name="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')"/><br>
                         <label>Location:    </label>
                         <input type="text" class="form-control" name="TLocation" placeholder="Enter Location" onfocus="hide(this)" onblur="show(this, 'Enter Location')"/><br>
+                        <div class="form-group">
+                            <label for="Type">Select Type </label>
+                            <select class="form-control" name="Type  " id="Type" onchange="set_type()">
+                            <%
+                                out.println("<option>Choose Type </option>");
+                                hibernate.helper.TypeList p=new hibernate.helper.TypeList();
+                                List<hibernate.pojo.TblType> typeList=p.getTypeList(user.getTblPlant().getIPlantId().toString());
+                                for(int i = 0; i < typeList.size(); i++)
+                                    out.println("<option value=\""+ typeList.get(i).getITypeId()+"\">"+ typeList.get(i).getTName() +"</option>");
+                            %>
+                            </select>
+                        </div>
                         <label>Function:	</label>  
                         <input type="radio" class="radio" name="BBothways" value="single" checked onClick="hidetimestamp()"/>Single Way<br>
                         <input type="radio" class="radio" name="BBothways" value="bothway" onClick="showtimestamp()" />Bothway<br>
