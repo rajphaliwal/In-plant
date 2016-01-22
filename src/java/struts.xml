@@ -6,6 +6,9 @@
     <!-- Configuration for the default package. -->
     <constant name="struts.devMode" value="true" />
     <package name="default" extends="struts-default">
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.NullPointerException" result="NullPointerError"></exception-mapping>
+        </global-exception-mappings>
         
         <action name="userLogin" class="struts.action.UserLoginAction" method="execute">
             <result name="superadmin">/jsp/insert/index.jsp</result>
@@ -102,6 +105,7 @@
         </action>
         <action name="AddTransporter" class="struts.action.TransporterInsertAction" method="execute">
             <result name="Success">/jsp/AddTransporter.jsp</result>
+            <result name="NullPointerError">/jsp/exception/ErrorNullPointer.jsp</result>
         </action>
         <action name="AddEpos" class="struts.action.EposInsertAction" method="execute">
             <result name="Success">/jsp/AddEpos.jsp</result>

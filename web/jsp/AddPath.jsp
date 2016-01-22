@@ -62,7 +62,9 @@
                 
                 var tname = document.getElementById("TName");
                 if(tname.value !== "")
-                    tname.readonly = 'readonly';
+                {
+                    tname.setAttribute('readonly', 'readonly');
+                }
             }
             function resetpath()
             {

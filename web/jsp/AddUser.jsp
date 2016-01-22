@@ -47,11 +47,35 @@
                 var pwd2 = document.getElementById("pwd2").value;
                 if (pwd != pwd2)
                 {
-                    alert("passwaords dont match");
+                    alert("passwords dont match");
                     return;
                 }
                 document.user.action="insertuser";
                 document.user.submit();
+            }
+            function checkuser()
+            {
+                var xmlhttp = new XMLHttpRequest();
+                var username = document.forms["user"]["SUsername"].value;
+                var url = "jsp/check/CheckUsername.jsp?username=" + username;
+                xmlhttp.onreadystatechange = function()
+                {
+                    if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                    {
+                        if(xmlhttp.responseText.trim() == "Username already exists")
+                            document.getElementById("check").style.color = 'red';
+                        else
+                            document.getElementById("check").style.color = 'green';
+                        document.getElementById("check").innerHTML = xmlhttp.responseText;
+                    }
+                    
+                };
+                try
+                {
+                    xmlhttp.open("GET",url,true);
+                    xmlhttp.send();
+                }
+                catch(e){   alert("unable to connect to server"); }
             }
         </script>
         <div class="container">
@@ -60,12 +84,12 @@
                 <div>
                     ${status}
                 </div>
-            <form name="user" action="">
+                <form name="user" action="" method="post">
                 <div class="form-group">
                     <div class="row">
                         <input type="hidden" name="Id" value="<% out.print(user.getTblPlant().getIPlantId().toString());%>">
                         <label>Username  :</label>
-                        <input type="text" name="SUsername" class="form-control" value="" placeholder="Enter Username" onfocus="hide(this)" onblur="show(this,'Enter Username')"/><br>
+                        <input type="text" name="SUsername" class="form-control" value="" placeholder="Enter Username" onfocus="hide(this)" onblur="show(this,'Enter Username')" oninput="checkuser()"/><span id="check" style="color: red"></span><br><br>
                         <label>Password  :</label>
                         <input type="password" id="pwd" class="form-control" name="SPassword" value="" placeholder="Enter Password" onfocus="hide(this)" onblur="show(this,'Enter Password')"/> <br>
                         <label>Confirm Password  : </label>

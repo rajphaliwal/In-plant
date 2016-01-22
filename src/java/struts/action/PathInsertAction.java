@@ -26,17 +26,15 @@ public class PathInsertAction {
         Path_handler p = new Path_handler();
         System.out.println(Id + TName + addepos);
         String result = p.insert_into_table(Integer.parseInt(Id), TName, addepos);
-        if(result.equals("Success"))
-        {
-            System.out.println("hellooooo");
-            HttpServletRequest request = ServletActionContext.getRequest();
-            HttpServletResponse response = ServletActionContext.getResponse();
-            
+        
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+        //if(result.equals("Success"))
+        //{
             request.setAttribute("status", result);
-    
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddPath.jsp");
             rd.forward(request, response);
-        }
+        //}
         return result;
     }
 

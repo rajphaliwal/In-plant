@@ -80,6 +80,8 @@ import permission.PermissionHandler;
     public String insert_into_table(String User_name,int plant_id,String password,String password_md5, PermissionHandler p)/* String tr_mob_no,String tr_address,String tr_city,String tr_state,String tr_pin,String  tr_email_id) */
     {
         boolean error_flag=false;
+        String result = "Success";
+        String resultDetail = null;
         session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
     
         org.hibernate.Transaction tx = null;
@@ -89,7 +91,20 @@ import permission.PermissionHandler;
             tx=session.beginTransaction();
             
             TblUsers u=new TblUsers();//TblTransporter();
-            u.setSUsername(User_name);
+            
+            if(User_name.equals(null))
+            {
+                System.out.println("#############################################Username Required" + User_name);
+                resultDetail = "Username Required";
+            }
+            
+            Users_handler user = new Users_handler();
+            if(user.get_tuple(User_name) != null)
+            {
+                System.out.println("##############################################Username exist" + User_name + "    " + user.get_tuple(User_name).getSUsername());
+                resultDetail = "Username Exist";
+            }
+            //u.setSUsername(User_name);
             
             {
                 Plant_handler ph=new Plant_handler();
@@ -142,7 +157,8 @@ import permission.PermissionHandler;
         }
         catch(Exception e)
         {
-            error_flag=true; 
+            error_flag=true;
+            result = "Failure";
             if (tx != null) {
                 tx.rollback();               
              e.printStackTrace();
@@ -151,10 +167,14 @@ import permission.PermissionHandler;
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
-           else         return "Failure";
+            /*if(error_flag == true) result = "Failure";
+            else         result = "Success";*/
         }
-        
+        if(resultDetail != null && result.equals("Failure"))
+        {
+            result = "Failed: " + resultDetail;
+        }
+        return result;
     }
     
     public String delete_from_table(String username) {

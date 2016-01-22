@@ -18,188 +18,96 @@ import permission.PermissionHandler;
  */
 public class UserInsertAction {
     private String SUsername;
-     private String Id;
-     private String SPassword;
-     private String BRemoveTrip;
-     private String BViewTrip;
-     private String BNodeView;
-     private String BAddTrip;
-     private String BViewException;
-     private String BEndException;
-     private String BViewHistory;
-     private String BSetupNewPlant;
-     private String BPlantModify;
-     private String BAddUser;
-     private String BModifyUser;
-     private String BChangeCurrentPlant;
-     private String BAddVehicle;
-     private String BModifyVehicle;
-     private String BModifyDriver;
-     private String BAddDriver;
-     private String BViewDo;
-     private String BLoggedIn;
-     private String BAddTransporter;
-     private String BAddCard;
-     private String BAddPath;
-     private String BAddEpos;
-     private String BAddProcess;
-     private String BModifyCard;
-     private String BModifyPath;
-     private String BModifyEpos;
-     private String BModifyProcess;
-     private String BAddLink;
-     private String BModifyLink;
-     private String BModifyTransporter;
+    private String Id;
+    private String SPassword;
+    private String cSPassword;
+    private String BRemoveTrip;
+    private String BViewTrip;
+    private String BNodeView;
+    private String BAddTrip;
+    private String BViewException;
+    private String BEndException;
+    private String BViewHistory;
+    private String BSetupNewPlant;
+    private String BPlantModify;
+    private String BAddUser;
+    private String BModifyUser;
+    private String BChangeCurrentPlant;
+    private String BAddVehicle;
+    private String BModifyVehicle;
+    private String BModifyDriver;
+    private String BAddDriver;
+    private String BViewDo;
+    private String BLoggedIn;
+    private String BAddTransporter;
+    private String BAddCard;
+    private String BAddPath;
+    private String BAddEpos;
+    private String BAddProcess;
+    private String BModifyCard;
+    private String BModifyPath;
+    private String BModifyEpos;
+    private String BModifyProcess;
+    private String BAddLink;
+    private String BModifyLink;
+    private String BModifyTransporter;
 
-     private permission.PermissionHandler p;
-     
-     
-     public String execute() throws Exception
-     {
-         p = new permission.PermissionHandler();
-         p.setBAddDriver ( Integer.parseInt(BAddDriver) == 1);
-         p.setBAddTrip(Integer.parseInt(BAddTrip)== 1);
-         p.setBAddUser(Integer.parseInt(BAddUser)== 1);
-         p.setBAddVehicle(Integer.parseInt(BAddVehicle) == 1);
-         p.setBChangeCurrentPlant(Integer.parseInt(BChangeCurrentPlant) == 1);
-         p.setBEndException(Integer.parseInt(BEndException) == 1);
-         p.setBLoggedIn(Integer.parseInt(BLoggedIn) == 1);
-         p.setBModifyDriver(Integer.parseInt(BModifyDriver) == 1);
-         p.setBModifyUser(Integer.parseInt(BModifyUser) == 1);
-         p.setBModifyVehicle(Integer.parseInt(BModifyVehicle) == 1);
-         p.setBNodeView(Integer.parseInt(BNodeView) == 1);
-         p.setBPlantModify(Integer.parseInt(BPlantModify) == 1);
-         p.setBRemoveTrip(Integer.parseInt(BRemoveTrip) == 1);
-         p.setBSetupNewPlant(Integer.parseInt(BSetupNewPlant) == 1);
-         p.setBViewDo(Integer.parseInt(BViewDo) == 1);
-         p.setBViewException(Integer.parseInt(BViewException) == 1);
-         p.setBViewHistory(Integer.parseInt(BViewHistory) == 1);
-         p.setBViewTrip(Integer.parseInt(BViewTrip) == 1);
-         p.setBAddCard(Integer.parseInt(BAddCard) == 1);
-         p.setBAddEpos(Integer.parseInt(BAddEpos) == 1);
-         p.setBAddPath(Integer.parseInt(BAddPath) == 1);
-         p.setBAddProcess(Integer.parseInt(BAddProcess) == 1);
-         p.setBAddTransporter(Integer.parseInt(BAddTransporter) == 1);
-         p.setBAddLink(Integer.parseInt(BAddLink) == 1);
-         p.setBModifyCard(Integer.parseInt(BModifyCard) == 1);
-         p.setBModifyEpos(Integer.parseInt(BModifyEpos) == 1);
-         p.setBModifyLink(Integer.parseInt(BModifyLink) == 1);
-         p.setBModifyPath(Integer.parseInt(BModifyPath) == 1);
-         p.setBModifyProcess(Integer.parseInt(BModifyProcess) == 1);
-         p.setBModifyTransporter(Integer.parseInt(BModifyTransporter) == 1);
-         
-         Users_handler u = new Users_handler();
-         String result =u.insert_into_table(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword), p);
-         if(result.equals("Success"))
-        {
-            HttpServletRequest request = ServletActionContext.getRequest();
-            HttpServletResponse response = ServletActionContext.getResponse();
-            
-            request.setAttribute("status", result);
-    
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddUser.jsp");
-            rd.forward(request, response);
-        }
-         return result;
+    private permission.PermissionHandler p;
+
+
+    public String execute() throws Exception
+    {
+        p = new permission.PermissionHandler();
+        p.setBAddDriver ( Integer.parseInt(BAddDriver) == 1);
+        p.setBAddTrip(Integer.parseInt(BAddTrip)== 1);
+        p.setBAddUser(Integer.parseInt(BAddUser)== 1);
+        p.setBAddVehicle(Integer.parseInt(BAddVehicle) == 1);
+        p.setBChangeCurrentPlant(Integer.parseInt(BChangeCurrentPlant) == 1);
+        p.setBEndException(Integer.parseInt(BEndException) == 1);
+        p.setBLoggedIn(Integer.parseInt(BLoggedIn) == 1);
+        p.setBModifyDriver(Integer.parseInt(BModifyDriver) == 1);
+        p.setBModifyUser(Integer.parseInt(BModifyUser) == 1);
+        p.setBModifyVehicle(Integer.parseInt(BModifyVehicle) == 1);
+        p.setBNodeView(Integer.parseInt(BNodeView) == 1);
+        p.setBPlantModify(Integer.parseInt(BPlantModify) == 1);
+        p.setBRemoveTrip(Integer.parseInt(BRemoveTrip) == 1);
+        p.setBSetupNewPlant(Integer.parseInt(BSetupNewPlant) == 1);
+        p.setBViewDo(Integer.parseInt(BViewDo) == 1);
+        p.setBViewException(Integer.parseInt(BViewException) == 1);
+        p.setBViewHistory(Integer.parseInt(BViewHistory) == 1);
+        p.setBViewTrip(Integer.parseInt(BViewTrip) == 1);
+        p.setBAddCard(Integer.parseInt(BAddCard) == 1);
+        p.setBAddEpos(Integer.parseInt(BAddEpos) == 1);
+        p.setBAddPath(Integer.parseInt(BAddPath) == 1);
+        p.setBAddProcess(Integer.parseInt(BAddProcess) == 1);
+        p.setBAddTransporter(Integer.parseInt(BAddTransporter) == 1);
+        p.setBAddLink(Integer.parseInt(BAddLink) == 1);
+        p.setBModifyCard(Integer.parseInt(BModifyCard) == 1);
+        p.setBModifyEpos(Integer.parseInt(BModifyEpos) == 1);
+        p.setBModifyLink(Integer.parseInt(BModifyLink) == 1);
+        p.setBModifyPath(Integer.parseInt(BModifyPath) == 1);
+        p.setBModifyProcess(Integer.parseInt(BModifyProcess) == 1);
+        p.setBModifyTransporter(Integer.parseInt(BModifyTransporter) == 1);
+        
+        String result;
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+        
+        Users_handler u = new Users_handler();
+        //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + SUsername + "   " + SPassword + "   " + cSPassword);
+        result =u.insert_into_table(SUsername, Integer.parseInt(Id), SPassword, security.MD5.crypt(SPassword), p);
+
+        //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + result);
+        request.setAttribute("status", result);
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddUser.jsp");
+        rd.forward(request, response);
+        
+        return result;
      }
 
-    public String getBModifyCard() {
-        return BModifyCard;
+    public UserInsertAction() {
     }
 
-    public void setBModifyCard(String BModifyCard) {
-        this.BModifyCard = BModifyCard;
-    }
-
-    public String getBModifyPath() {
-        return BModifyPath;
-    }
-
-    public void setBModifyPath(String BModifyPath) {
-        this.BModifyPath = BModifyPath;
-    }
-
-    public String getBModifyEpos() {
-        return BModifyEpos;
-    }
-
-    public void setBModifyEpos(String BModifyEpos) {
-        this.BModifyEpos = BModifyEpos;
-    }
-
-    public String getBModifyProcess() {
-        return BModifyProcess;
-    }
-
-    public void setBModifyProcess(String BModifyProcess) {
-        this.BModifyProcess = BModifyProcess;
-    }
-
-    public String getBAddLink() {
-        return BAddLink;
-    }
-
-    public void setBAddLink(String BAddLink) {
-        this.BAddLink = BAddLink;
-    }
-
-    public String getBModifyLink() {
-        return BModifyLink;
-    }
-
-    public void setBModifyLink(String BModifyLink) {
-        this.BModifyLink = BModifyLink;
-    }
-
-    public String getBModifyTransporter() {
-        return BModifyTransporter;
-    }
-
-    public void setBModifyTransporter(String BModifyTransporter) {
-        this.BModifyTransporter = BModifyTransporter;
-    }
-
-    public String getBAddTransporter() {
-        return BAddTransporter;
-    }
-
-    public void setBAddTransporter(String BAddTransporter) {
-        this.BAddTransporter = BAddTransporter;
-    }
-
-    public String getBAddCard() {
-        return BAddCard;
-    }
-
-    public void setBAddCard(String BAddCard) {
-        this.BAddCard = BAddCard;
-    }
-
-    public String getBAddPath() {
-        return BAddPath;
-    }
-
-    public void setBAddPath(String BAddPath) {
-        this.BAddPath = BAddPath;
-    }
-
-    public String getBAddEpos() {
-        return BAddEpos;
-    }
-
-    public void setBAddEpos(String BAddEpos) {
-        this.BAddEpos = BAddEpos;
-    }
-
-    public String getBAddProcess() {
-        return BAddProcess;
-    }
-
-    public void setBAddProcess(String BAddProcess) {
-        this.BAddProcess = BAddProcess;
-    }
-     
-     
     public String getSUsername() {
         return SUsername;
     }
@@ -222,6 +130,14 @@ public class UserInsertAction {
 
     public void setSPassword(String SPassword) {
         this.SPassword = SPassword;
+    }
+
+    public String getcSPassword() {
+        return cSPassword;
+    }
+
+    public void setcSPassword(String cSPassword) {
+        this.cSPassword = cSPassword;
     }
 
     public String getBRemoveTrip() {
@@ -368,6 +284,102 @@ public class UserInsertAction {
         this.BLoggedIn = BLoggedIn;
     }
 
+    public String getBAddTransporter() {
+        return BAddTransporter;
+    }
+
+    public void setBAddTransporter(String BAddTransporter) {
+        this.BAddTransporter = BAddTransporter;
+    }
+
+    public String getBAddCard() {
+        return BAddCard;
+    }
+
+    public void setBAddCard(String BAddCard) {
+        this.BAddCard = BAddCard;
+    }
+
+    public String getBAddPath() {
+        return BAddPath;
+    }
+
+    public void setBAddPath(String BAddPath) {
+        this.BAddPath = BAddPath;
+    }
+
+    public String getBAddEpos() {
+        return BAddEpos;
+    }
+
+    public void setBAddEpos(String BAddEpos) {
+        this.BAddEpos = BAddEpos;
+    }
+
+    public String getBAddProcess() {
+        return BAddProcess;
+    }
+
+    public void setBAddProcess(String BAddProcess) {
+        this.BAddProcess = BAddProcess;
+    }
+
+    public String getBModifyCard() {
+        return BModifyCard;
+    }
+
+    public void setBModifyCard(String BModifyCard) {
+        this.BModifyCard = BModifyCard;
+    }
+
+    public String getBModifyPath() {
+        return BModifyPath;
+    }
+
+    public void setBModifyPath(String BModifyPath) {
+        this.BModifyPath = BModifyPath;
+    }
+
+    public String getBModifyEpos() {
+        return BModifyEpos;
+    }
+
+    public void setBModifyEpos(String BModifyEpos) {
+        this.BModifyEpos = BModifyEpos;
+    }
+
+    public String getBModifyProcess() {
+        return BModifyProcess;
+    }
+
+    public void setBModifyProcess(String BModifyProcess) {
+        this.BModifyProcess = BModifyProcess;
+    }
+
+    public String getBAddLink() {
+        return BAddLink;
+    }
+
+    public void setBAddLink(String BAddLink) {
+        this.BAddLink = BAddLink;
+    }
+
+    public String getBModifyLink() {
+        return BModifyLink;
+    }
+
+    public void setBModifyLink(String BModifyLink) {
+        this.BModifyLink = BModifyLink;
+    }
+
+    public String getBModifyTransporter() {
+        return BModifyTransporter;
+    }
+
+    public void setBModifyTransporter(String BModifyTransporter) {
+        this.BModifyTransporter = BModifyTransporter;
+    }
+
     public PermissionHandler getP() {
         return p;
     }
@@ -377,6 +389,21 @@ public class UserInsertAction {
     }
 
     
+
+    public static void main(String[] args) throws Exception {
+        UserInsertAction ux = new UserInsertAction();
+        ux.setSUsername("a");
+        ux.setcSPassword("a");
+        ux.setSPassword("a");
+        ux.setId("157");
+        //String r = ux.execute();
+        //System.out.println(r);
+        
+        PermissionHandler p = new PermissionHandler("transporter");
+        Users_handler u = new Users_handler();
+        //u.insert_into_table(ux.getSUsername(), Integer.parseInt(ux.getId()), ux.getSPassword(), security.MD5.crypt(ux.getSPassword()), p);*/
+        System.out.println(u.insert_into_table(ux.getSUsername(), Integer.parseInt(ux.getId()), ux.getSPassword(), security.MD5.crypt(ux.getSPassword()), p));
+    }
      
      
      

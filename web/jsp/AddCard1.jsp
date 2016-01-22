@@ -18,8 +18,6 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    </head>
-    <body>
         <script>
             function cardaction(button)
             {
@@ -28,7 +26,7 @@
                 else
                 {
                     var a = document.forms["card"]["cardid"].value;
-                    if (a == "")
+                    if (a.length == 0)
                     {
                         alert("Enter Card Id ");
                         return;
@@ -37,17 +35,51 @@
                 }
                 document.card.submit();
             }
+            
+            function checkuser()
+            {
+                
+                if(document.forms["card"]["cardid"].value != null)
+                {
+                    var xmlhttp = new XMLHttpRequest();
+                    var card = document.forms["card"]["cardid"].value;
+                    var url = "jsp/check/CheckCard.jsp?card=" + card;
+                    xmlhttp.onreadystatechange = function()
+                    {
+                        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                        {
+                            //alert(xmlhttp.responseText);
+                            if(xmlhttp.responseText.trim() == "Card already exists")
+                                document.getElementById("check").style.color = 'red';
+                            else
+                                document.getElementById("check").style.color = 'green';
+                            document.getElementById("check").innerHTML = xmlhttp.responseText;
+                        }
+
+                    };
+                    try
+                    {
+                        xmlhttp.open("GET",url,true);
+                        xmlhttp.send();
+                    }
+                    catch(e){   alert("unable to connect to server"); }
+                }
+            }
         </script>
+    </head>
+    
+    <body>
+        
         <%
                 ValueStack stack = ActionContext.getContext().getValueStack();
                 Map sesion = (Map)ActionContext.getContext().getSession();
                 if(sesion.get("user")==null)
-            {
-                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-                rd.forward(request, response);
-            }
+                {
+                    RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                    rd.forward(request, response);
+                }
                 hibernate.pojo.TblUsers user = (hibernate.pojo.TblUsers)sesion.get("user");
-            %>
+        %>
         <div class="container">
             <div class="row">
                 <div class="jumbotron">
@@ -64,7 +96,7 @@
                         <input  type="hidden" name="Id" value="<% out.print(user.getTblPlant().getIPlantId().toString());%>"/>
                         <div class="form-group">
                             <label>Card Id:</label>
-                            <input type="text" class="form-control" name="cardid" id="cardid" placeholder="Enter Card Id" onfocus="hide(this)" onblur="show(this, 'Enter Card Id')"/><br><br>
+                            <input type="text" class="form-control" name="cardid" id="cardid" placeholder="Enter Card Id" onfocus="hide(this)" onblur="show(this, 'Enter Card Id')" oninput="checkuser()"/><span id="check" style="color: red"></span><br><br>
                         </div>
                         
                         

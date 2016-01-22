@@ -59,16 +59,14 @@ public class EposInsertAction {
                 Integer.parseInt(ITerminalId),TGatewayName,Integer.parseInt(IGateNo),
                 TLocation,false,0);
         }
-        if(result.equals("Success"))
-        {
-            HttpServletRequest request = ServletActionContext.getRequest();
-            HttpServletResponse response = ServletActionContext.getResponse();
-            
-            request.setAttribute("status", result);
-    
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddEpos.jsp");
-            rd.forward(request, response);
-        }
+        
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        request.setAttribute("status", result);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddEpos.jsp");
+        rd.forward(request, response);
         return result;
     }
 
