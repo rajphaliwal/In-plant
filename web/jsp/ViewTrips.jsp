@@ -10,37 +10,37 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Live View</title>
-        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="css/app.min.1.css">
+        <link rel="stylesheet" href="css/app.min.2.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/menu.css">
+<!--         <link rel="stylesheet" href="css/table.css"> -->
         <script src="js/endTrip.js"></script>
         <style>
             th, td{min-width: 100px;}
         </style>
-        <script>
-            /*function body(t)
-            {
-                var box = document.getElementById("scroll");
-                box.scrollTop = box.scrollHeight;
-                setTimeout("location.reload(true);", t);
-            }*/
-        </script>
-        
     </head>
-    <body style="overflow-x: scroll">
+    <body class="sw-toggled" style="padding-top:70px">
+    	<jsp:include page="includes/header.jsp"></jsp:include>
         <div id="top">
             <div style="position: fixed; width: 100%"><jsp:include page="Menu.jsp"/></div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div id="scroll" >
+            <!--tab view-->
+            <br />
+			<div id="tabs" style="margin-top:50px;">
+			  <ul>
+				  <li><a href="#tabs-1">Scheduled Auction</a></li>
+				  <li><a href="#tabs-2">Active Auction</a></li>
+			  </ul>
+ 			</div> 
                 <%  
-                    
                         ValueStack stack = ActionContext.getContext().getValueStack();
                         Map sesion = (Map)ActionContext.getContext().getSession();
                         if(sesion.get("user")==null)
@@ -56,6 +56,6 @@ pageEncoding="ISO-8859-1"%>
                         }
                 %>
             </div>
-        </div>
+<!--         </div> -->
     </body>
 </html>

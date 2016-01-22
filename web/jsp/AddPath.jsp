@@ -42,22 +42,38 @@
             function addPath()
             {
                 var dropdown = document.getElementById("epos");
-                var temp = document.getElementById("addepos").value + dropdown.value;
+                var dropdownText = dropdown.options[dropdown.selectedIndex].text;
                 
-                var p = document.createElement("p");
-                var node = document.createTextNode(dropdown.options[dropdown.selectedIndex].text);
-                p.appendChild(node);
+                paths = document.getElementById("addepos").value + dropdown.value;
+                paths = paths + ",";
+                document.getElementById("addepos").value = paths;
+                
+                var newElement = document.createElement("p");
+                newElement.setAttribute('class', 'newElement');
+                var node = document.createTextNode(dropdownText);
+                dropdownText = null;
+                newElement.appendChild(node);
                 
                 var parent = document.getElementById("div1");
-                var child = document.getElementById("Id");
-                parent.insertBefore(p, child);
+                var child = document.getElementById("reset");
+                parent.insertBefore(newElement, child);
                 
-                //document.getElementById("fullpath").value += dropdown.options[dropdown.selectedIndex].text + "->";
-                temp = temp + ",";
-                document.getElementById("addepos").value = temp;
-                //alert(temp);
-                dropdown.options[dropdown.selectedIndex]=null;
-                document.getElementById("TName").disabled = true;
+                document.getElementById("reset").style.visibility = 'visible';
+                
+                var tname = document.getElementById("TName");
+                if(tname.value !== "")
+                {
+                    tname.setAttribute('readonly', 'readonly');
+                }
+            }
+            function resetpath()
+            {
+                paths = "";
+                document.getElementById("addepos").value = paths;
+                var elements = document.getElementsByClassName('newElement');
+                while(elements.length > 0){
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
             }
         </script>
         <%
@@ -94,6 +110,7 @@
                                 </select>
                                 <br><br>
                             </div>
+                                <input type="button" name="reset" id="reset" value="Reset" class="btn btn-info col-sm-12" style="visibility: hidden;" onClick = "resetpath()" /><br><br>
                             <input type="hidden" name="Id" id="Id" value="<% out.print(user.getTblPlant().getIPlantId().toString()); %>" >
                             <input type="hidden" name="addepos" id="addepos" value=""/>
                             <input type="button" class="btn btn-info col-sm-12" name="add" id="addpath" value="Add to path" onClick = "addPath()" /><br><br>          

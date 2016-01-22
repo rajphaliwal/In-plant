@@ -63,6 +63,98 @@
                 }
                 document.epos.submit();
             }
+            function checktid()
+            {
+                if(document.forms["epos"]["ITerminalId"].value.length != 0)
+                {
+                    var xmlhttp = new XMLHttpRequest();
+                    var tid = document.forms["epos"]["ITerminalId"].value;
+                    var plantid = document.getElementById("IPlantId").value;
+                    var url = "jsp/check/CheckTid.jsp?tid=" + tid + "&plantid=" + plantid;
+                    xmlhttp.onreadystatechange = function()
+                    {
+                        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                        {
+                            //alert(xmlhttp.responseText);
+                            if(xmlhttp.responseText.trim() == "Terminal already exists")
+                                document.getElementById("check1").style.color = 'red';
+                            else
+                                document.getElementById("check1").style.color = 'green';
+                            document.getElementById("check1").innerHTML = xmlhttp.responseText;
+                        }
+
+                    };
+                    try
+                    {
+                        xmlhttp.open("GET",url,true);
+                        xmlhttp.send();
+                    }
+                    catch(e){   alert("unable to connect to server"); }
+                }
+                else
+                    document.getElementById("check1").innerHTML = "";
+            }
+            function checkmid()
+            {
+                if(document.forms["epos"]["IMachineId"].value.length != 0)
+                {
+                    var xmlhttp = new XMLHttpRequest();
+                    var mid = document.forms["epos"]["IMachineId"].value;
+                    //var plantid = document.getElementById("IPlantId").value;
+                    var url = "jsp/check/CheckMid.jsp?mid=" + mid;
+                    xmlhttp.onreadystatechange = function()
+                    {
+                        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                        {
+                            //alert(xmlhttp.responseText);
+                            if(xmlhttp.responseText.trim() == "Machine already exists")
+                                document.getElementById("check2").style.color = 'red';
+                            else
+                                document.getElementById("check2").style.color = 'green';
+                            document.getElementById("check2").innerHTML = xmlhttp.responseText;
+                        }
+
+                    };
+                    try
+                    {
+                        xmlhttp.open("GET",url,true);
+                        xmlhttp.send();
+                    }
+                    catch(e){   alert("unable to connect to server"); }
+                }
+                else
+                    document.getElementById("check2").innerHTML = "";
+            }
+            function checkgateno()
+            {
+                if(document.forms["epos"]["IGateNo"].value.length != 0)
+                {
+                    var xmlhttp = new XMLHttpRequest();
+                    var gno = document.forms["epos"]["IGateNo"].value;
+                    var plantid = document.getElementById("IPlantId").value;
+                    var url = "jsp/check/CheckGateNo.jsp?gno=" + gno + "&plantid=" + plantid;
+                    xmlhttp.onreadystatechange = function()
+                    {
+                        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                        {
+                            //alert(xmlhttp.responseText);
+                            if(xmlhttp.responseText.trim() == "Gate Number already exists")
+                                document.getElementById("check3").style.color = 'red';
+                            else
+                                document.getElementById("check3").style.color = 'green';
+                            document.getElementById("check3").innerHTML = xmlhttp.responseText;
+                        }
+
+                    };
+                    try
+                    {
+                        xmlhttp.open("GET",url,true);
+                        xmlhttp.send();
+                    }
+                    catch(e){   alert("unable to connect to server"); }
+                }
+                else
+                    document.getElementById("check3").innerHTML = "";
             function set_type()
             {
                 var a = document.getElementById("Type").value;
@@ -96,13 +188,13 @@
                     <input  type="hidden" name="ITypeId" id="ITypeId" value=""/>
                     <div class="form-group">
                         <label>Terminal Id:</label>  
-                        <input type="text" class="form-control" name="ITerminalId" placeholder="Enter Terminal Id" onfocus="hide(this)" onblur="show(this, 'Enter Terminal Id')"/><br>
+                        <input type="text" class="form-control" name="ITerminalId" placeholder="Enter Terminal Id" onfocus="hide(this)" onblur="show(this, 'Enter Terminal Id')" oninput="checktid()"/><span id="check1" style="color: red"></span><br><br>
                         <label>Machine Id: </label> 
-                        <input type="text" class="form-control" name="IMachineId" placeholder="Enter Machine Id" onfocus="hide(this)" onblur="show(this, 'Enter Machine Id')"/><br>
+                        <input type="text" class="form-control" name="IMachineId" placeholder="Enter Machine Id" onfocus="hide(this)" onblur="show(this, 'Enter Machine Id')" oninput="checkmid()"/><span id="check2" style="color: red"></span><br><br>
                         <label>Gate Number:  </label>
-                        <input type="text" class="form-control" name="IGateNo" placeholder="Enter Gate No" onfocus="hide(this)" onblur="show(this, 'Enter Gate No')"/><br>
+                        <input type="text" class="form-control" name="IGateNo" placeholder="Enter Gate No" onfocus="hide(this)" onblur="show(this, 'Enter Gate No')" oninput="checkgateno()"/><span id="check3" style="color: red"></span><br><br>
                         <label>Gateway Name: </label>
-                        <input type="text" class="form-control" name="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')"/><br>
+                        <input type="text" class="form-control" name="TGatewayName" placeholder="Enter Gateway Name" onfocus="hide(this)" onblur="show(this, 'Enter Gateway Name')" /><br>
                         <label>Location:    </label>
                         <input type="text" class="form-control" name="TLocation" placeholder="Enter Location" onfocus="hide(this)" onblur="show(this, 'Enter Location')"/><br>
                         <div class="form-group">

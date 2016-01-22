@@ -24,18 +24,17 @@ public class PathInsertAction {
 
     public String execute() throws Exception {
         Path_handler p = new Path_handler();
-        //System.out.println(Id + TName + addepos);
+        System.out.println(Id + TName + addepos);
         String result = p.insert_into_table(Integer.parseInt(Id), TName, addepos);
-        if(result.equals("Success"))
-        {
-            HttpServletRequest request = ServletActionContext.getRequest();
-            HttpServletResponse response = ServletActionContext.getResponse();
-            
+        
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+        //if(result.equals("Success"))
+        //{
             request.setAttribute("status", result);
-    
             RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddPath.jsp");
             rd.forward(request, response);
-        }
+        //}
         return result;
     }
 
@@ -66,10 +65,10 @@ public class PathInsertAction {
     public static void main(String[] args) throws Exception {
 
         PathInsertAction p = new PathInsertAction();
-        p.setAddepos("300,301,");
-        p.setId("23");
-        p.setTName("A");
+        p.setAddepos("151,152,");
+        p.setId("157");
+        p.setTName("test");
         String str = p.execute();
-        System.err.println(str);
+        System.out.println(str);
     }
 }

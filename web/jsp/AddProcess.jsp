@@ -47,6 +47,38 @@
                     document.Process.action = "AddProcess";
                     document.Process.submit();
                 }
+                function checkprocess()
+                {
+                    if(document.forms["Process"]["processname"].value.length != 0)
+                    {
+                        var xmlhttp = new XMLHttpRequest();
+                        var Id = document.forms["Process"]["Id"].value;
+                        var name = document.forms["Process"]["processname"].value;
+                        //var plantid = document.getElementById("IPlantId").value;
+                        var url = "jsp/check/CheckProcess.jsp?Id=" + Id + "&name=" + name;
+                        xmlhttp.onreadystatechange = function()
+                        {
+                            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                            {
+                                //alert(xmlhttp.responseText);
+                                if(xmlhttp.responseText.trim() == "Process already exists")
+                                    document.getElementById("check").style.color = 'red';
+                                else
+                                    document.getElementById("check").style.color = 'green';
+                                document.getElementById("check").innerHTML = xmlhttp.responseText;
+                            }
+
+                        };
+                        try
+                        {
+                            xmlhttp.open("GET",url,true);
+                            xmlhttp.send();
+                        }
+                        catch(e){   alert("unable to connect to server"); }
+                    }
+                    else
+                        document.getElementById("check").innerHTML = "";
+                }
             </script>
             <%
                 ValueStack stack = ActionContext.getContext().getValueStack();
@@ -65,7 +97,7 @@
                         <div class="form-group">
                             <input  type="hidden" name="Id" value="<%out.print(user.getTblPlant().getIPlantId().toString());%>"/>
                             <label>Process Name : </label>
-                            <input class="form-control" type="text" name="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')"/><br>
+                            <input class="form-control" type="text" name="processname"  placeholder="Enter Process Name" onfocus="hide(this)" onblur="show(this, 'Enter Process Name')" oninput="checkprocess()"/><span id="check" style="color: red"></span><br><br>
                             
                             <input type="button" name="next" id="next" class="btn btn-success col-sm-12"  value="Submit" onClick = "processaction(this)" /><br><br>
                             <input type="button" name="home" id="home" class="btn btn-info col-sm-12"  value="Home" onClick = "homeprocess()" />

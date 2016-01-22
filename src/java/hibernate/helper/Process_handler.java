@@ -12,7 +12,9 @@ import hibernate.pojo.TblPlant;
 import hibernate.pojo.TblProcess;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -94,6 +96,36 @@ public class Process_handler {
              return c;
         }     
     }
+    
+    public hibernate.pojo.TblProcess get_tuple_by_plant(int id, String name) {
+        session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        TblProcess c = new TblProcess();
+        hibernate.pojo.TblProcess list = null;
+        try
+        {
+           
+            tx=session.beginTransaction();
+            //c=(TblProcess) session.get(TblProcess.class,new BigDecimal(id));
+            System.out.println(name);
+            Query query = session.createQuery("FROM hibernate.pojo.TblProcess where tblPlant="+ id + " and TProcessType='" + name + "'");
+            list = (hibernate.pojo.TblProcess) query.uniqueResult();
+            System.out.println(list.getTProcessType());
+        }
+        catch(Exception e)
+        {
+             if (tx != null) {
+                tx.rollback();
+            e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+             return list;
+        }     
+    }
+    
     public static void main(String[] args)
     {
         Process_handler t = new Process_handler();

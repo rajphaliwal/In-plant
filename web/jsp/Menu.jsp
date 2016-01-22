@@ -15,9 +15,9 @@ pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <!--<link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-min.js" type="text/javascript"></script>
-    <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>-->
      
            
             <%   

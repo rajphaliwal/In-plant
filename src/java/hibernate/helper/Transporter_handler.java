@@ -84,6 +84,8 @@ public class Transporter_handler extends sample_helper
     {
         boolean error_flag = false;
         session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+        String result = null;
+        String resultDetail = null;
 
         org.hibernate.Transaction tx = null;
         try
@@ -102,7 +104,9 @@ public class Transporter_handler extends sample_helper
             }
             else
             {
+                resultDetail = "Server error: Plant not found";
                 throw new Exception("Foreign Key Plant_id Dependency Failed ");
+                
             }
 
             trp.setTTransporterName(tr_name);
@@ -126,6 +130,9 @@ public class Transporter_handler extends sample_helper
         catch (Exception e)
         {
             error_flag = true;
+            result = "Failure";
+            e.getMessage();
+            //resultDetail = (String) e;
             if (tx != null)
             {
                 tx.rollback();
@@ -135,16 +142,10 @@ public class Transporter_handler extends sample_helper
         finally
         {
             session.close();
-            if (error_flag == false)
-            {
-                return "Success";
-            }
-            else
-            {
-                return "Failure";
-            }
         }
-
+        if(resultDetail != null && result.equals("Failure"))
+            result = "Failed: " + resultDetail;
+        return result;
     }
     
     

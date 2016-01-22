@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -37,9 +38,28 @@ public class Epos_handler extends sample_helper{
       public String insert_into_table(int machine_id,int plant_id, int type_id,int terminal_id,String Gateway_name,int gateno,String Location,boolean isbothway,int time)
   {
         boolean error_flag=false;
+        String result = "Success";
+        String resultDetail = null;
         session=hibernate.folder.HibernateUtil.getSessionFactory().openSession();
-    
         org.hibernate.Transaction tx = null;
+        Epos_handler epos = new Epos_handler();
+        
+        if(epos.get_tuple(machine_id) != null)
+        {
+            resultDetail = "Machine Id Already Exists";
+            result = "Failure";
+        }
+        
+        else if(epos.get_tuple_by_tid(terminal_id, plant_id) != null)
+        {
+            resultDetail = "Terminal Id Already Exists";
+            result = "Failure";
+        }
+        else if(epos.get_tuple_by_gno(gateno, plant_id) != null)
+        {
+            resultDetail = "Gate Number Already Exists";
+            result = "Failure";
+        }
         try
         {
            
@@ -74,6 +94,7 @@ public class Epos_handler extends sample_helper{
         catch(Exception e)
         {
             error_flag=true; 
+            result = "Failure";
             if (tx != null) {
                 tx.rollback();
             //e.printStackTrace();
@@ -82,9 +103,10 @@ public class Epos_handler extends sample_helper{
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
-           else         return "Failure";
         }
+        if(resultDetail != null && result.equals("Failure"));
+            result = "Failed: " + resultDetail;
+        return result;
         
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -317,5 +339,73 @@ public class Epos_handler extends sample_helper{
         }      
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    public hibernate.pojo.TblEpos get_tuple_by_tid(int tid, int id)
+    {
+        session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;  
+        TblEpos ep=null;
+        //hibernate.pojo.TblEpos list = new TblEpos();
+        hibernate.pojo.TblEpos list = new TblEpos();
+        try
+        {
+            tx=session.beginTransaction();
+            System.out.println(tid + "   " + id);
+            Query query = session.createQuery("FROM hibernate.pojo.TblEpos where ITerminalId=" + tid + " And tblPlant="+ id);
+            list = (hibernate.pojo.TblEpos) query.uniqueResult();
+        }
+        catch(Exception e)
+        {
+            if (tx != null) 
+            {
+                tx.rollback();
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }   
+        //System.out.println(list);
+        //if(list != null)
+            //for(hibernate.pojo.TblEpos i: list)
+            //{
+                //System.out.println(list.getITerminalId());
+            //}
+        return list;
+    }
+    public List<hibernate.pojo.TblEpos> get_tuple_by_gno(int gno, int id)
+    {
+        session = hibernate.folder.HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;  
+        TblEpos ep=null;
+        //hibernate.pojo.TblEpos list = new TblEpos();
+        List<hibernate.pojo.TblEpos> list = null;
+        try
+        {
+            tx=session.beginTransaction();
+            System.out.println(gno + "   " + id);
+            Query query = session.createQuery("FROM hibernate.pojo.TblEpos where IGateNo=" + gno + " And tblPlant="+ id);
+            list = (List<hibernate.pojo.TblEpos>) query.list();
+        }
+        catch(Exception e)
+        {
+            if (tx != null) 
+            {
+                tx.rollback();
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }   
+        //System.out.println(list);
+        //if(list != null)
+        
+            for(hibernate.pojo.TblEpos i: list)
+            {
+                System.out.println(i.getIGateNo());
+            }
+        return list;
+    }
 }
