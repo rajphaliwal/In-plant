@@ -98,29 +98,29 @@
             <result name="Success">/jsp/AddUser.jsp</result>
         </action>
         <action name="AddDriver" class="struts.action.DriverInsertAction" method="execute">
-            <result name="Success">/jsp/AddDriver.jsp</result>
+            <result name="Success">/jsp/ViewDriver.jsp</result>
         </action>
         <action name="AddVehicle" class="struts.action.VehicleInsertAction" method="execute">
-            <result name="Success">/jsp/AddVehicle.jsp</result>
+            <result name="Success">/jsp/ViewVehicle.jsp</result>
         </action>
         <action name="AddTransporter" class="struts.action.TransporterInsertAction" method="execute">
-            <result name="Success">/jsp/AddTransporter.jsp</result>
+            <result name="Success">/jsp/ViewTransporter.jsp</result>
             <result name="NullPointerError">/jsp/exception/ErrorNullPointer.jsp</result>
         </action>
         <action name="AddEpos" class="struts.action.EposInsertAction" method="execute">
-            <result name="Success">/jsp/AddEpos.jsp</result>
+            <result name="Success">/jsp/ViewEpos.jsp</result>
         </action>
         <action name="AddCard" class="struts.action.CardInsertAction" method="execute">
-            <result name="Success">/jsp/AddCard.jsp</result>
+            <result name="Success">/jsp/ViewCard.jsp</result>
         </action>
         <action name="AddLink" class="struts.action.LinkInsertAction" method="execute">
-            <result name="Success">/jsp/AddLink.jsp</result>
+            <result name="Success">/jsp/ViewLink.jsp</result>
         </action>
         <action name="AddPath" class="struts.action.PathInsertAction" method="execute">
-            <result name="Success">/jsp/AddPath.jsp</result>
+            <result name="Success">/jsp/ViewPath.jsp</result>
         </action>
         <action name="AddProcess" class="struts.action.ProcessInsertAction" method="execute">
-            <result name="Success">/jsp/AddProcess.jsp</result>
+            <result name="Success">/jsp/ViewProcess.jsp</result>
         </action>
         <action name="Home">
             <result>/jsp/ViewTrips.jsp</result>

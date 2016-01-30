@@ -65,7 +65,7 @@ public class TransporterInsertAction {
         if(result1 == "Success")
         request.setAttribute("status", "Success");
 
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddTransporter.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewTransporter.jsp");
         rd.forward(request, response);
        
         return result1;

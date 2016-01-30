@@ -66,9 +66,19 @@
                     getEposString+="</tr>";
                     rowId++;
                 }
+                getEposString+="</tbody>";
                 out.println(getEposString);
+                if(user.getBAddEpos())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Epos\" onclick=\"addepos()\"/><br><br></form> ");
         %>
+        
         <script>
+            function addepos()
+            {
+                document.add.action = "loggedIn-AddEpos";
+                document.add.submit();
+            }
             var mat_id;
             function popup(button)
             {

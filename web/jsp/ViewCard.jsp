@@ -17,6 +17,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function addcard()
+            {
+                document.add.action = "loggedIn-AddCard";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -58,14 +65,18 @@
                     getCardString+="</tr>";
                     rowId++;
                 }
+                getCardString+="</tbody>";
                 out.println(getCardString);
-        %>  
+                if(user.getBAddCard())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Card\" onclick=\"addcard()\"/><br><br></form> ");
+        %>
+        
+        
         <div id="popDiv" class="ontop">
             <form id="popup">
                 <label for="Path" id="heading">Modify</label><br>
-                <div id="list">
-
-                </div>
+                
             </form>
         </div>
     </body>

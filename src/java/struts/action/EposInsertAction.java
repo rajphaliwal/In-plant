@@ -66,7 +66,7 @@ public class EposInsertAction {
 
         request.setAttribute("status", result);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddEpos.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewEpos.jsp");
         rd.forward(request, response);
         return result;
     }

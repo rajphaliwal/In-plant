@@ -29,7 +29,7 @@ public class CardInsertAction {
 
         request.setAttribute("status", result);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddCard.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewCard.jsp");
         rd.forward(request, response);
         return result;
     }

@@ -32,7 +32,7 @@ public class PathInsertAction {
         //if(result.equals("Success"))
         //{
             request.setAttribute("status", result);
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddPath.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewPath.jsp");
             rd.forward(request, response);
         //}
         return result;

@@ -30,7 +30,7 @@ public class TypeInsertAction {
             
             request.setAttribute("status", result);
     
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddType.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewType.jsp");
             rd.forward(request, response);
         }
         return result;

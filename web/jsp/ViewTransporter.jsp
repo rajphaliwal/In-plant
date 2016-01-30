@@ -17,6 +17,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function addtransporter()
+            {
+                document.add.action = "loggedIn-AddTransporter";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -71,8 +78,14 @@
                 getTransporterString+="</tr>";
                 rowId++;
             }
+            getTransporterString+="</tbody>";
             out.println(getTransporterString);
+            if(user.getBAddTransporter())
+                out.println(" <form name=\"add\"> " + 
+                    "<input type=\"submlt\" value=\"Add New Transporter\" onclick=\"addtransporter()\"/><br><br></form> ");
         %>
+        
+        
         <div id="popDiv" class="ontop">
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>

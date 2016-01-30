@@ -17,6 +17,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function addvehicle()
+            {
+                document.add.action = "loggedIn-AddVehicle";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -66,8 +73,14 @@
                     getVehicleString+="</tr>";
                     rowId++;
                 }
+                getVehicleString+="</tbody>";
                 out.println(getVehicleString);
+                if(user.getBAddVehicle())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Vehicle\" onclick=\"addvehicle()\"/><br><br></form> ");
         %>
+        
+        
         <div id="popDiv" class="ontop">
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>

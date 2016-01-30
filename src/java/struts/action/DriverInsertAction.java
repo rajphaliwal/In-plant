@@ -41,7 +41,7 @@ public class DriverInsertAction {
             
             request.setAttribute("status", result);
     
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddDriver.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewDriver.jsp");
             rd.forward(request, response);
         }
         return result;
