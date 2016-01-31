@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Error500
-    Created on : 22 Jan, 2016, 2:58:13 PM
+    Document   : Error404
+    Created on : 17 Jan, 2016, 9:54:35 PM
     Author     : Ankit
 --%>
 
@@ -9,11 +9,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>500 Internal Server Error</title>
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="css/app.min.1.css">
+        <link rel="stylesheet" href="css/app.min.2.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <title>500</title>
     </head>
-    <body>
-        <div><jsp:include page="Menu.jsp"/></div>
-        <h1>500</h1>
-        <p>Internal Server Error</p>
+    <body class="sw-toggled" style="padding-top:70px">
+        <jsp:include page="includes/header.jsp"></jsp:include>
+        <div id="top">
+            <div style="position: fixed; width: 100%">
+                <jsp:include page="Menu.jsp"></jsp:include>
+            </div>
+        </div><br><br>
+            
+        <div>
+            <h1>500</h1>
+            <p>Internal Server Error</p>
+            
+        </div>
     </body>
 </html>

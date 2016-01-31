@@ -15,9 +15,50 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Path</title>
-        <link rel="stylesheet" href="css/table.css">
-        <link href="css/popup.css" rel="stylesheet" type="text/css"/>
-        <script src="js/popup.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.jqueryui.js"></script>
+    
+        <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="css/jquery-ui.css" rel="stylesheet">
+        <link href="css/dataTables.jqueryui.css" rel="stylesheet">        
+
+        <style type="text/css">
+                    .dataTables_wrapper .ui-toolbar{                         
+                margin-left: 5%;
+                width: 90%;
+                padding-bottom: 0px;
+                padding-top: 0px;
+            }
+             .dataTables_scroll{
+                width: 90%;
+                margin-left: 5%;                
+            }            
+            .dataTables_length label{
+                 padding-top: 4%;
+            }
+            table.dataTable tbody td {
+                  padding: 3px 10px;
+            }
+            table.dataTable .odd{
+                 background-color: #BEBFB6;
+            }
+        </style>
+
+        <script type="text/javascript">
+                    
+            $(document).ready(function () {
+                $('#table_id').dataTable({
+                    "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    "pagingType": "full_numbers",
+                    "scrollY":        "300px",                    
+                    "scrollCollapse": true,
+                    
+                });
+                
+            });
+
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -35,7 +76,7 @@
                 List<hibernate.pojo.TblPaths> pathList = pl.getPathList(user.getTblPlant().getIPlantId().toString());
                 
                 String getPathString = new String();
-                getPathString+="<table border=1 width=\"100%\" id=\"PathList\">";
+                getPathString+="<table border=1 width=\"100%\" id=\"table_id\">";
                 getPathString+="<thead>";
                 getPathString+="<tr>";
                 getPathString+="<th>Path Name</th>";

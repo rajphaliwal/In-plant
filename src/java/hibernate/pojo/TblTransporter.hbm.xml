@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 3 Jun, 2015 5:12:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="hibernate.pojo.TblTransporter" table="tbl_transporter" schema="pr_inplant" optimistic-lock="version">
+    <class name="hibernate.pojo.TblTransporter" table="tbl_transporter" schema="pr_inplant" optimistic-lock="version" lazy="false">
         <id name="ITransporterId" type="big_decimal">
             <column name="i_transporter_id" precision="50" scale="0" />
             <generator class="native" />
