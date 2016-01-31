@@ -58,10 +58,21 @@
                     getProcessString+="</tr>";
                     rowId++;
                 }
+                getProcessString+="</tbody>";
                 out.println(getProcessString);
+                if(user.getBAddProcess())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Process\" onclick=\"addprocess()\"/><br><br></form> ");
                 
         %>
+        
         <script>
+            function addprocess()
+            {
+                document.add.action = "loggedIn-AddProcess";
+                document.add.submit();
+            }
+        
             var processid;
             function popup(button)
             {

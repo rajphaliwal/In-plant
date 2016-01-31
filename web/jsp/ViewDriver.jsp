@@ -17,6 +17,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function adddrvr()
+            {
+                document.add.action = "loggedIn-AddDriver";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -71,9 +78,17 @@
                     getDriverString+="</tr>";
                     rowId++;
                 }
+                getDriverString+="</tbody>";
                 out.println(getDriverString);
+                if(user.getBAddDriver())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Driver\" onclick=\"adddrvr()\"/><br><br></form> ");
         %>
+        
+        
         <script>
+            
+        
             var dr_id;
             function popup(button)
             {

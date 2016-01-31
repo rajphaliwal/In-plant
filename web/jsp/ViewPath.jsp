@@ -123,8 +123,14 @@
                     getPathString+="</tr>";
                     rowId++;
                 }
+                getPathString+="</tbody>";
                 out.println(getPathString);
+                if(user.getBAddPath())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Path\" onclick=\"addpath()\"/><br><br></form> ");
         %>
+        
+        
         <div id="popDiv" class="ontop">
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>

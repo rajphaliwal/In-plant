@@ -17,6 +17,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function adduser()
+            {
+                document.add.action = "loggedIn-AddUser";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -58,8 +65,14 @@
                     getUsersString+="</tr>";
                     rowId++;
                 }
+                getUsersString+="</tbody>";
                 out.println(getUsersString);
+                if(user.getBAddUser())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New User\" onclick=\"adduser()\"/><br><br></form> ");
         %>
+        
+        
         <div id="popDiv" class="ontop">
             <form id="popup">
                 <label for="Path" id="heading">Modify</label><br>

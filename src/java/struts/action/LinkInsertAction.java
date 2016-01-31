@@ -31,7 +31,7 @@ public class LinkInsertAction {
             
             request.setAttribute("status", result);
     
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddLink.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewLink.jsp");
             rd.forward(request, response);
         }
         return result;

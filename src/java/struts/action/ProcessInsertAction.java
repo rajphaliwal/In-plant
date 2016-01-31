@@ -30,7 +30,7 @@ public class ProcessInsertAction {
             
             request.setAttribute("status", result);
     
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddProcess.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewProcess.jsp");
             rd.forward(request, response);
         }
         return result;

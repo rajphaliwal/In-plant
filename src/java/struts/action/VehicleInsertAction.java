@@ -40,7 +40,7 @@ public class VehicleInsertAction {
             
             request.setAttribute("status", result);
     
-            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AddVehicle.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/ViewVehicle.jsp");
             rd.forward(request, response);
         }
         return result;

@@ -18,6 +18,13 @@
         <link rel="stylesheet" href="css/table.css">
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
         <script src="js/popup.js"></script>
+        <script>
+            function addlink()
+            {
+                document.add.action = "loggedIn-AddLink";
+                document.add.submit();
+            }
+        </script>
     </head>
     <body>
         <div><jsp:include page="Menu.jsp"/></div>
@@ -63,8 +70,14 @@
                     getLinkString+="</tr>";
                     rowId++;
                 }
+                getLinkString+="</tbody>";
                 out.println(getLinkString);
+                if(user.getBAddLink())
+                    out.println(" <form name=\"add\"> " + 
+                        "<input type=\"submlt\" value=\"Add New Link\" onclick=\"addlink()\"/><br><br></form> ");
         %>
+        
+        
         <div id="popDiv" class="ontop">
             <div id="popup">
                 <label for="Path" id="heading">Modify</label><br>
